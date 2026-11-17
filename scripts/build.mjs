@@ -17,7 +17,7 @@ for(const file of files){
   factories.push(`${JSON.stringify(file)}:(exports,require)=>{\n${code}\nObject.assign(exports,{${names.join(',')}});\n}`);
 }
 const bundle=`(()=>{'use strict';const factories={${factories.join(',\n')}};const cache={};function require(name){if(!cache[name]){const exports={};cache[name]=exports;factories[name](exports,require);}return cache[name];}require('app.js');})();`;
-const css=await readFile('src/styles.css','utf8')+'\n'+await readFile('src/spread-layout.css','utf8');
+const css=await readFile('src/styles.css','utf8')+'\n'+await readFile('src/spread-layout.css','utf8')+'\n'+await readFile('src/mobile-layout.css','utf8');
 const shell=await readFile('src/shell.html','utf8');
 const html=shell.replace('<!-- APP_STYLE -->',`<style>${css}</style>`).replace('<!-- APP_SCRIPT -->',`<script>${bundle.replace(/<\/script/gi,'<\\/script')}</script>`);
 await writeFile('dist/index.html',html,'utf8');

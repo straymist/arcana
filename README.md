@@ -38,3 +38,9 @@ node scripts/dev.mjs
 瀏覽器測試需要另外安裝 Playwright，或設定 PLAYWRIGHT_MODULE 與 CHROME_PATH 後執行 node tests/browser.mjs；它不是網站執行依賴。
 
 目前沒有 PWA、雲端同步、內建 AI API、完整 RES 牌陣或流體物理。
+
+## 手機緊湊版面
+
+手機收起大段開場文字與裝飾說明，兩排牌與抽牌、保存按鈕集中在同一畫面。390×844 的素材牌 140px、方向牌 112px；短螢幕使用更緊湊的配置，主要按鈕仍至少 44px。預設素材句子完整顯示，自訂長句可自然長高。
+
+另執行 node tests/mobile-layout.mjs，涵蓋 390×844、375×667、320×720、390×664 開／蓋牌，以及額外 34px 底部留空模擬，共 9 組配置通過。完整 30 項資料測試與 89 項互動測試亦通過；仍不等同 iPhone Safari 實機驗收。

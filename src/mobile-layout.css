@@ -1,0 +1,72 @@
+@layer mobile {
+  .direction-compact { display: none; }
+  @media (max-width: 999px) {
+    .app-shell { padding-bottom: calc(66px + env(safe-area-inset-bottom)); }
+    .site-header { height: 56px; }
+    .brand { gap: 8px; font-size: 18px; }
+    .brand-symbol { font-size: 32px; }
+    .brand small { font-size: 5px; margin-top: 4px; }
+    .welcome, .site-footer { display: none; }
+    .desk-bar { height: 0; min-height: 0; margin: 0; padding: 0; }
+    .desk-bar > .quick-button { top: 6px; right: 94px; width: 44px; min-height: 44px; padding: 10px; font-size: 0; }
+    .desk-bar > .quick-button .icon { width: 18px; height: 18px; }
+    .spread-panel { position: relative; padding: 8px 10px 10px; }
+    .spread-panel > .panel-top { position: absolute; top: 6px; right: 10px; margin: 0; min-height: 40px; }
+    .spread-panel > .panel-top .eyebrow { display: none; }
+    .spread-panel > .panel-top .text-button { min-height: 44px; padding: 4px; }
+    .spread-heading { min-height: 40px; padding-right: 100px; }
+    .spread-heading h2 { font-size: 18px; line-height: 1.4; }
+    .spread-heading p, .spread-heading .small-seal { display: none; }
+    .question-line { margin-top: 3px; padding: 2px 0; min-height: 44px; }
+    .question-line input { min-height: 38px; }
+    .context-chip { margin-top: 5px; padding: 4px 8px; font-size: 10px; }
+    .ritual-circle { width: 210px; height: 210px; top: 125px; }
+    .six-card-spread .spread-row { margin: 10px 0 8px; grid-template-columns: 30px minmax(0,1fr); gap: 6px; }
+    .six-card-spread .slots { gap: 7px; }
+    .six-card-spread .slot-label { margin-bottom: 5px; min-height: 20px; line-height: 1.3; font-size: 10px; gap: 4px; }
+    .six-card-spread .slot-label b { font-size: 17px; }
+    .six-card-spread .material-card { min-height: 140px; padding: 14px 6px 12px; gap: 8px; }
+    .six-card-spread .card-symbol, .six-card-spread .filled .card-symbol { font-size: 28px; }
+    .six-card-spread .card-text, .six-card-spread .filled .card-text { font-size: 13px; line-height: 1.55; letter-spacing: 0; }
+    .six-card-spread .empty .card-text { font-size: 12px; }
+    .six-card-spread .card-foot { display: none; }
+    .six-card-spread .card-corner { font-size: 10px; }
+    .six-card-spread .card-corner.top { top: 6px; left: 6px; }
+    .six-card-spread .card-corner.bottom { bottom: 6px; right: 6px; }
+    .six-card-spread .material-card.direction-card { min-height: 112px; padding: 12px 4px 10px; gap: 7px; }
+    .direction-card .direction-prompt { display: none; }
+    .direction-card .direction-compact { display: block; }
+    .six-card-spread .direction-card .crystal-icon, .six-card-spread .direction-card .depth-control { min-width: 44px; }
+    .direction-card.face-down .card-text { font-size: 12px; }
+    .direction-back-seal { width: 40px; height: 40px; font-size: 25px; outline-offset: 3px; }
+    .row-star { margin-left: -7px; }
+    .spread-panel > .draw-row { gap: 7px; margin: 12px 0 9px; }
+    .spread-panel .deck-object { width: 34px; height: 44px; min-height: 44px; font-size: 24px; }
+    .spread-panel .draw-row .primary { min-height: 44px; min-width: 168px; padding: 8px 18px; }
+    .spread-panel .draw-row small { display: none; }
+    .spread-actions { margin-top: 8px; padding-top: 8px; }
+    .spread-actions .secondary { min-height: 44px; }
+    .spread-panel .closing-note { display: none; }
+    nav.workspace-nav { padding-top: 6px; padding-bottom: calc(7px + env(safe-area-inset-bottom)); }
+    nav.workspace-nav button { min-height: 48px; }
+    @media (max-width: 359px) {
+      .depth-ocean { width: 18px; }
+      .six-card-spread .direction-card .card-icons { gap: 1px; }
+    }
+    @media (max-height: 740px) {
+      .site-header { height: 52px; }
+      .spread-panel > .panel-top { top: 0; }
+      .spread-heading { min-height: 36px; }
+      .question-line { margin-top: 0; }
+      .six-card-spread .spread-row { margin-top: 6px; margin-bottom: 5px; }
+      .six-card-spread .slot-label { min-height: 18px; line-height: 1.1; }
+      .six-card-spread .slot-label b { font-size: 16px; }
+      .six-card-spread .material-card { min-height: 116px; padding-top: 10px; padding-bottom: 10px; gap: 6px; }
+      .six-card-spread .material-card.direction-card { min-height: 96px; padding-top: 8px; padding-bottom: 6px; gap: 4px; }
+      .six-card-spread .direction-card .crystal-icon, .six-card-spread .direction-card .depth-control { min-height: 54px; }
+      .spread-panel > .draw-row { margin-top: 6px; margin-bottom: 6px; gap: 5px; }
+      .spread-panel .deck-object { width: 24px; height: 28px; min-height: 28px; font-size: 18px; }
+      .spread-actions { margin-top: 4px; padding-top: 4px; }
+    }
+  }
+}
