@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/><meta name="theme-color" content="#161a18"/><meta name="description" content="抽牌、攪動、留下問題。屬於創作者的煉金工作桌。"/><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='50'%3E✧%3C/text%3E%3C/svg%3E"/><title>Arcana — Idea Alchemy</title><style>@layer reset,base,layout,objects,forms,mobile;
+@layer reset{*{box-sizing:border-box}body,h1,h2,h3,p{margin:0}button,input,textarea,select{font:inherit}button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button{color:inherit}button:disabled{cursor:default;opacity:.45}svg{flex-shrink:0}button,a{touch-action:manipulation}[hidden]{display:none!important}}
+@layer base{
+ :root{color-scheme:dark;--bg:#141b19;--panel:#1d2521;--text:#e5e0cf;--muted:#979f90;--gold:#ccb477;--line:#b8a2732b;--serif:Georgia,'Times New Roman','Noto Serif TC','Songti TC',serif;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang TC','Microsoft JhengHei',sans-serif;font-family:var(--sans);font-size:14px;color:var(--text);background:var(--bg)}
+ body{min-width:300px;min-height:100vh;background:radial-gradient(ellipse at 52% 40%,#5a5a3220,transparent 65%),repeating-linear-gradient(97deg,#ffffff01 0 1px,transparent 1px 5px),#141b19;line-height:1.6}
+ body:has(dialog[open]){overflow:hidden}button{border:0;background:none}a{color:inherit;text-decoration:none}h1,h2,h3{font-family:var(--serif);font-weight:400}h2{font-size:23px;letter-spacing:.055em;line-height:1.5}p{overflow-wrap:anywhere}.icon{width:19px;height:19px;vertical-align:middle}button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:5px}input:focus-visible,textarea:focus-visible,select:focus-visible{outline:1px solid var(--gold);outline-offset:2px}.eyebrow{font-size:10px;letter-spacing:.18em;color:var(--gold);font-weight:500}.muted{color:var(--muted);line-height:1.9}.microcopy{color:var(--muted);font-size:11px;line-height:1.8}.primary,.secondary,.quick-button,.file-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 17px;border-radius:5px;letter-spacing:.04em;font-size:13px;transition:background .18s,transform .18s;border:1px solid var(--line)}.primary{background:#d1b77e;color:#242a20;border-color:#ddc38c;font-weight:600;box-shadow:0 4px 18px #0002}.primary:hover{background:#e1c891}.secondary{background:#343c2c72;color:#d9d6bf;border-color:#a69b694a}.secondary:hover{background:#434b35}.text-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;font-size:12px;color:var(--gold);padding:7px 4px}.text-button:hover{color:#f2dfaa}.text-button span:not(.icon){font-size:10px;background:#b5a56e18;padding:1px 6px;border-radius:3px}.icon-button{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;color:#b3b7a8}.icon-button:hover{background:#ffffff08}.danger{color:#d0a395;min-height:44px;padding:8px}.danger:hover{color:#f3beb0}button:active{transform:translateY(1px)}::selection{background:#9b885566;color:#fff}
+}
+@layer layout{
+ .app-shell{max-width:1600px;padding:0 48px;margin:auto}.site-header{height:102px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:15px;font-family:var(--serif);font-size:28px;letter-spacing:.23em;line-height:1.15}.brand-symbol{font-size:54px;line-height:1;font-weight:400;color:var(--gold);letter-spacing:0;text-shadow:0 0 30px #ccb47733}.brand small{display:block;font-family:var(--sans);font-size:8px;letter-spacing:.38em;color:var(--muted);margin-top:8px}.header-meta{display:flex;align-items:center;gap:5px}.local-status{color:#a6ad9c;display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.04em;margin-right:22px}.local-status i{width:5px;height:5px;border-radius:50%;background:#9eae87;box-shadow:0 0 8px #9eae8755}.welcome{display:flex;justify-content:space-between;align-items:center;padding:38px 0 31px}.welcome .eyebrow{font-size:9px;color:#9eab90;margin-bottom:9px}.welcome h1{font-size:32px;letter-spacing:.06em;line-height:1.6}.welcome h1 em{font-style:normal;color:#d3bd88}.welcome>div>p:last-child{font-size:12px;color:var(--muted);margin-top:8px;letter-spacing:.03em}.moon-note{display:flex;align-items:center;gap:14px;color:#c3c4ae;padding-right:9px;font-size:12px}.moon-note>.icon{width:32px;height:32px;stroke:#a3ac8e;transform:rotate(-18deg)}.moon-note small{display:block;color:#84917e;font-size:10px;margin-top:4px}.desk-bar{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding:14px 0 20px;gap:15px}.workspace-nav{display:flex;align-items:center;gap:6px;background:#0e16146b;border:1px solid #8f9a771c;border-radius:6px;padding:4px}.workspace-nav button{display:flex;align-items:center;gap:8px;min-height:40px;padding:8px 18px;color:#939e8c;font-size:12px;border-radius:4px}.workspace-nav button.selected{color:#e4d1a0;background:#555a343c;box-shadow:inset 0 0 0 1px #b8ab6c2c}.workspace-nav button:hover{color:#dfd7bd}.workspace-nav .icon{width:17px;height:17px}.desk-caption{font-family:var(--serif);font-size:10px;letter-spacing:.15em;color:#7f8d79}.desk-caption>span{color:#aa9e6f;margin-right:9px}.quick-button{background:#202a23;border-color:#84936d42;color:#b9c2a8;font-size:12px;min-height:40px}
+ .workspace{display:grid;grid-template-columns:minmax(220px,.85fr) minmax(480px,1.9fr) minmax(230px,.9fr);gap:18px;align-items:start;scroll-margin-top:20px}.panel{position:relative;min-width:0;border:1px solid var(--line);border-radius:9px;background:linear-gradient(140deg,#ffffff02,transparent 60%),var(--panel);box-shadow:0 12px 28px #00000012;padding:21px;overflow:hidden}.panel-top{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:25px;margin-bottom:13px}.panel-top .eyebrow{font-size:8px;letter-spacing:.16em;color:#a6ab8d}.panel-top .text-button{min-height:26px;padding:0;font-size:10px}.tiny-count{font-size:10px;color:#8f9a85}.panel-description{font-size:11px;color:#98a18f;margin-top:7px;line-height:1.7}.spread-panel{grid-column:2;grid-row:1;background:radial-gradient(ellipse at 50% 30%,#8b805511,transparent 65%),linear-gradient(160deg,#ffffff02,transparent),#202720;padding:24px 26px 22px;min-height:758px}.cauldron-panel{grid-column:1;grid-row:1;min-height:620px;background:linear-gradient(140deg,#ffffff03,transparent),#1c2521}.right-column{grid-column:3;display:flex;flex-direction:column;gap:18px;min-width:0}.orb-panel{padding-bottom:19px}.journal-panel{background:linear-gradient(140deg,#8a75460d,transparent),#24291f;border-color:#9c8d5b35}.journal-title{display:flex;justify-content:space-between;align-items:center;gap:8px}.journal-title>.icon{color:#b1a376;width:26px;height:26px}.journal-panel h2,.orb-panel h2,.cauldron-panel h2{font-size:20px}.journal-tools{display:flex;gap:9px;margin:19px 0 14px;align-items:center;flex-wrap:wrap}.journal-tools .secondary{min-height:38px;font-size:11px;padding:7px 12px}.journal-tools .text-button{font-size:10px;min-height:36px}.site-footer{display:flex;justify-content:space-between;gap:15px;color:#778371;font-size:10px;margin:26px 0 0;padding:20px 0 25px;border-top:1px solid var(--line)}.site-footer>span:last-child{font-size:8px;letter-spacing:.14em}.site-footer i{font-style:normal;margin:0 8px;color:var(--gold)}
+ .workspace:not(.focus-spread){grid-template-columns:1fr;max-width:880px;margin:auto}.workspace:not(.focus-spread)>.spread-panel,.workspace:not(.focus-spread)>.cauldron-panel,.workspace:not(.focus-spread) .orb-panel,.workspace:not(.focus-spread) .journal-panel{display:none}.workspace:not(.focus-spread) .active{display:block!important;grid-column:1;grid-row:auto}.workspace:not(.focus-spread)>.right-column{grid-column:1;width:100%}.focus-cauldron>.right-column{display:none}.workspace:not(.focus-spread) .cauldron-panel{padding:28px}.workspace:not(.focus-spread) .vessel{max-width:400px;height:340px;margin:25px auto 18px}.workspace:not(.focus-spread) .idea-list{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}.workspace:not(.focus-spread) .vessel-actions{justify-content:center;gap:28px}.workspace:not(.focus-spread) .microcopy{text-align:center}.focus-orb .orb-object{width:280px;height:300px;margin:25px auto 30px}.focus-orb .orb-glass{width:230px;height:230px;left:25px}.focus-orb .orb-base{width:140px;left:70px;bottom:15px}.focus-orb .orb-word{font-size:35px}.focus-orb .orb-panel{text-align:center;padding:28px}.focus-orb .orb-actions{justify-content:center;max-width:400px;margin:auto}.focus-journal .journal-panel{padding:28px}.focus-journal .journal-list{max-height:none;display:grid;grid-template-columns:1fr 1fr;gap:15px}.focus-journal .journal-entry{min-height:170px;border:1px solid var(--line);padding:20px;border-radius:5px}.focus-journal .journal-empty{grid-column:1/-1;padding:45px 5px}.error-banner{padding:15px;background:#65433777;border:1px solid #b98c6855;border-radius:6px;margin-top:15px;font-size:13px}
+}
+@layer objects{
+ .six-card-spread .spread-row{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:center;margin:26px 0 18px}.six-card-spread .spread-row>.slots{margin:0}.six-card-spread .direction-row>.direction-slot{grid-column:auto}.row-star{display:flex;align-items:center;justify-content:center;width:44px;min-height:44px;margin-left:-5px;color:#d1b77e;border-radius:50%;font-family:var(--serif);font-size:27px;text-shadow:0 0 15px #ccb47733}.row-star:hover{background:#b5a3611c;color:#efdb9e}.spread-panel>.draw-row{flex-direction:column;gap:16px;margin:30px 0 20px}.spread-panel>.draw-row .deck-object{margin:0}.direction-card .card-icons{gap:8px}.direction-card .crystal-icon{width:74px;min-height:74px;padding:5px}.direction-card .mini-orb{width:64px;height:64px;font-size:28px}.direction-card .mini-orb:after{left:10px;right:10px;bottom:-6px;height:8px}.direction-card .mini-orb .crystal-word{display:block;margin:0;padding:4px;color:#e9ddf5;font-family:var(--serif);font-size:24px;line-height:1.25;max-width:100%;overflow-wrap:anywhere;text-shadow:0 0 10px #e5c4ff66}.direction-card .mini-orb .crystal-word.has-word{font-size:14px}
+ .spread-panel>.draw-row{position:relative;z-index:1}.six-card-spread .direction-card{text-align:center;gap:8px}
+ .six-card-spread .material-card{min-height:225px}.six-card-spread .slots{margin:24px 0 16px}.direction-row>.direction-slot{grid-column:2}.direction-card .card-icons{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px}.direction-card .crystal-icon{width:48px;min-height:48px;padding:7px;flex-shrink:0}.direction-card .mini-orb{width:34px;height:34px;font-size:22px}.direction-card .mini-orb:after{left:5px;right:5px;bottom:-5px;height:7px}.direction-card .direction-prompt{display:block;margin:0;padding:0;min-height:0;font:inherit;line-height:inherit;color:inherit}.direction-card .crystal-word{display:block;margin-top:7px;font-size:11px;line-height:1.6;color:#75688a}.direction-card .crystal-word.has-word{font-family:var(--serif);font-size:14px;color:#644b7e}.direction-card.empty .direction-prompt{color:#a2aa93}
+ .lateral-orb{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:94px;flex-shrink:0;text-align:center}.crystal-icon{display:flex;align-items:center;justify-content:center;width:78px;min-height:78px;padding:8px;border-radius:50%;color:#e3d2f0}.mini-orb{position:relative;display:flex;align-items:center;justify-content:center;width:57px;height:57px;border:1px solid #bcb0d075;border-radius:50%;background:radial-gradient(ellipse at 30% 20%,#f3e7ff70,transparent 28%),radial-gradient(ellipse at 60% 70%,#ae80d657,transparent 65%),#3c465d;box-shadow:inset -4px -5px 12px #c9b3dd28,0 0 19px #b487df20;font-family:var(--serif);font-size:30px;line-height:1;text-shadow:0 0 13px #dac2f6}.mini-orb:after{content:'';position:absolute;bottom:-7px;left:10px;right:10px;height:9px;border-radius:20% 20% 50% 50%;background:linear-gradient(90deg,#75623b,#d0b87d,#76603e);border:1px solid #bdab715c}.crystal-icon:hover .mini-orb{border-color:#e4d2f5;box-shadow:0 0 24px #c39bea50}.lateral-orb .crystal-word{display:block;color:#a8adc1;font-size:10px;line-height:1.8;max-width:94px;overflow-wrap:anywhere}.lateral-orb .crystal-word.has-word{font-family:var(--serif);color:#e7d8ec;font-size:17px;letter-spacing:.05em}.crystal-icon.awakening .mini-orb{animation:orb-glow .5s ease-out}
+ .spread-heading{display:flex;justify-content:space-between;align-items:center}.spread-heading p{color:#9ea48f;font-size:11px;margin-top:6px}.small-seal{font-size:36px;font-family:var(--serif);color:#a89b6866}.question-line{display:flex;align-items:center;gap:9px;margin-top:22px;padding:9px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;z-index:1}.question-line>span{font-size:10px;color:#b8b092;white-space:nowrap}.question-line input{width:100%;min-width:0;background:transparent;color:#ddd6ba;border:0;min-height:28px;font-size:11px;outline:none}.question-line input::placeholder{color:#77836f}.context-chip{background:#7f88591a;border:1px solid #94a26a33;border-radius:3px;padding:6px 10px;font-size:11px;color:#b3bf9c;margin-top:10px}.ritual-circle{position:absolute;top:156px;left:50%;transform:translateX(-50%);width:320px;height:320px;border:1px solid #9d915c16;border-radius:50%;pointer-events:none}.ritual-circle:before,.ritual-circle:after{content:'';position:absolute;border:1px solid #9d915c16;inset:14px;border-radius:50%}.ritual-circle:after{inset:42px;border-radius:0;transform:rotate(45deg)}.ritual-circle>span{position:absolute;top:0;left:50%;color:#9b8e5b33;transform:translate(-50%,-50%);font-size:27px;background:#252b21}
+ .slots{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:30px 0 24px}.slot-label{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:12px;font-size:12px;color:#c3bd9f}.slot-label b{font-family:var(--serif);font-size:20px;color:#d3ba7d;font-weight:400}.slot-label small{display:none}.material-card{position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;width:100%;min-height:205px;padding:25px 12px 22px;border:1px solid #a99b594f;border-radius:7px;background:linear-gradient(140deg,#c6b67b0c,transparent 60%),#242c22;box-shadow:0 7px 14px #0002;transition:background .2s;isolation:isolate}.material-card:before{content:'';position:absolute;inset:6px;border:1px solid #a99b5925;border-radius:3px;z-index:-1;pointer-events:none}.material-card:hover{background-color:#30392a}.card-corner{position:absolute;color:#9e915f6b;font-size:11px;line-height:1}.card-corner.top{top:13px;left:13px}.card-corner.bottom{bottom:13px;right:13px}.card-symbol{font-family:var(--serif);font-size:42px;font-weight:400;line-height:1.2;color:#afa273;filter:drop-shadow(0 0 10px #d2c28c11)}.card-text{font-family:var(--serif);font-size:14px;line-height:1.9;overflow-wrap:anywhere;letter-spacing:.02em}.empty .card-text{font-size:12px;color:#a2aa93}.card-foot{font-size:8px;letter-spacing:.02em;color:#7f8b75}.material-card.filled{background:radial-gradient(ellipse at top,#f0e1b9,#d9c99f);color:#3c4132;border-color:#dcc896;box-shadow:0 10px 20px #0003,inset 0 0 20px #bc9e5866}.filled:before{border-color:#8c804749}.filled:hover{background:#eee0bb}.filled .card-foot{color:#7c795e}.filled .card-corner{color:#96824c}.filled .card-text{font-size:16px}.filled .card-symbol{font-size:39px}.dealing .material-card{animation:deal .7s calc(var(--i)*.14s) both}.draw-row{display:flex;align-items:center;justify-content:center;gap:17px;margin:0 0 28px}.draw-row>div{text-align:center}.draw-row small{display:block;font-size:9px;color:#8a977e;margin-top:9px;letter-spacing:.04em}.draw-row .primary{min-width:165px}.deck-object{position:relative;width:41px;height:57px;border:1px solid #aa955c;border-radius:4px;background:repeating-linear-gradient(45deg,#a4935b13 0 1px,transparent 1px 7px),#293322;box-shadow:-3px 3px 0 #646545,-5px 5px 0 #273020,-6px 6px 0 #87784f;transform:rotate(-9deg);color:#c7af73;flex-shrink:0}.deck-object:before{content:'';position:absolute;inset:4px;border:1px solid #a4935b55;border-radius:2px}.deck-object>span{font-size:24px}.direction-area{border-top:1px solid var(--line);padding-top:19px;position:relative}.section-label{font-size:11px;color:#c2bba0;margin-bottom:13px;letter-spacing:.04em}.section-label>span{float:right;color:#7f8d78;font-size:9px}.direction-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.direction{display:grid;grid-template-columns:25px 1fr;text-align:left;align-items:center;column-gap:7px;border:1px solid #8c956035;border-radius:5px;padding:10px 9px;min-height:61px;background:#141c172e;color:#b6b79c}.direction>span{grid-row:span 2;font-size:25px;font-family:var(--serif);font-weight:400;color:#b1a76f}.direction b{font-size:11px;font-weight:400;white-space:nowrap}.direction small{font-size:6px;letter-spacing:.12em;color:#828f76}.direction.selected{border-color:#ccb4779c;background:#9b94552b;box-shadow:0 0 13px #b9ae6010}.direction.selected b,.direction.selected>span{color:#e5ce90}.direction:hover{border-color:#b7a36777}.direction-prompt{font-size:10px;color:#8c9a7f;line-height:1.9;margin:14px 0 0;min-height:49px;padding:0 3px}.direction-prompt strong{color:#b9c4a5;font-weight:400}.direction-prompt p{font-size:10px;margin-top:5px}.quiet-star{color:#ad9e6e;margin-right:5px}.word-chip{margin-top:7px;color:#bcbb9b;border:1px solid #a4925b33;display:inline-block;padding:3px 9px;border-radius:4px}.word-chip b{font-weight:400;color:#dfce9c}.spread-actions{display:flex;justify-content:center;gap:10px;margin-top:19px;padding-top:18px;border-top:1px solid var(--line)}.spread-actions .secondary{font-size:11px;min-height:40px;flex:1;padding:8px 5px}.closing-note{font-size:9px;color:#79876e;text-align:center;margin-top:16px}
+ .vessel{height:260px;position:relative;margin:24px -6px 15px;padding:7px 5px 17px;filter:drop-shadow(0 12px 12px #0003)}.vessel-rim{position:absolute;z-index:2;top:1px;left:0;width:100%;height:28px;border-radius:50%;background:linear-gradient(#8c8256,#3d4939 42%,#9f8e5e 50%,#566344 70%,#252e24);box-shadow:0 2px 5px #0007;pointer-events:none}.vessel-rim:after{content:'';position:absolute;inset:6px 8px 8px;border-radius:50%;background:radial-gradient(ellipse,#77977a60,#2c4b3d);border:1px solid #adbb8b44}.water{position:relative;width:100%;height:100%;border:1px solid #7a977677;border-top:0;border-radius:12% 12% 42% 42% / 9% 9% 28% 28%;background:radial-gradient(ellipse at 30% 25%,#83b8a025,transparent 65%),linear-gradient(90deg,#172d29,#2a4b3f 40%,#284737 65%,#172e28);overflow:hidden;box-shadow:inset 5px 0 10px #b0d2aa0d,inset -5px 0 10px #0005,inset 0 15px 25px #8daa6612}.water:after{content:'';position:absolute;inset:28px 11px 22px 7px;border-left:3px solid #c0d8bb22;border-radius:40%;pointer-events:none}.water-glint{position:absolute;left:0;right:0;top:13px;height:20px;background:#acc99c16;filter:blur(6px)}.vessel-foot{position:absolute;bottom:4px;left:21%;width:58%;height:13px;border-radius:50%;background:linear-gradient(#736e49,#2d3828,#8a7850);box-shadow:0 4px 8px #0004}.idea-bubble{position:absolute;z-index:1;border:1px solid #b7d8a452;border-radius:50%;background:radial-gradient(circle at 29% 22%,#effbdd38,transparent 22%),radial-gradient(circle at 50% 45%,#9bc49a1c,transparent 68%),#7aaf8225;box-shadow:inset -4px -6px 10px #789d6833,inset 3px 3px 10px #d1f4c41a,0 0 16px #acc79512;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;width:78px;height:78px;padding:9px;animation:float 5s var(--delay) ease-in-out infinite;backdrop-filter:blur(2px)}.idea-bubble:hover{background-color:#adc99240;border-color:#cce1ae;z-index:3}.idea-bubble>span{font-size:22px;line-height:1}.idea-bubble small{font-size:8px;color:#d1e0c1;line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.bubble-0{left:14%;top:26px;width:91px;height:91px}.bubble-1{right:9%;top:117px;width:80px;height:80px}.bubble-2{right:10%;top:35px;width:67px;height:67px}.bubble-3{left:10%;top:142px;width:64px;height:64px}.bubble-4{left:38%;top:105px;width:63px;height:63px}.bubble-5{left:40%;top:190px;width:51px;height:51px}.particle{position:absolute;width:4px;height:4px;border-radius:50%;background:#a9ce9266;box-shadow:0 0 8px #b4e08788;pointer-events:none}.p1{top:50%;left:12%;animation:float 6s infinite}.p2{top:28%;right:20%;animation:float 5s -2s infinite}.p3{top:72%;left:54%;animation:float 4s -1s infinite}.water-empty{text-align:center;color:#a4bc98;font-family:var(--serif);font-size:15px;margin-top:75px;line-height:2.3}.vessel-actions{display:flex;justify-content:space-between;align-items:center;gap:6px}.vessel-actions .secondary{min-height:37px;font-size:11px;padding:6px 11px}.vessel-actions .text-button{font-size:11px}.cauldron-panel>.microcopy{font-size:9px;text-align:center;margin-top:10px;color:#7f907a}.idea-list{margin-top:21px;border-top:1px solid var(--line)}.idea-row{display:flex;align-items:center;gap:9px;text-align:left;width:100%;padding:15px 0;border-bottom:1px solid var(--line);min-height:66px}.list-icon{font-size:21px;line-height:1.3;width:29px;flex-shrink:0;text-align:center}.idea-row>span:nth-child(2){flex:1;min-width:0}.idea-row b{display:block;font-size:11px;font-weight:400;line-height:1.8;overflow-wrap:anywhere;color:#c3cbb5}.idea-row small{font-size:8px;color:#83947c;display:block;margin-top:3px}.row-arrow{font-size:15px;color:#909d78}.idea-row:hover b{color:#e7e4ce}.stirring .water{animation:stir .9s ease-in-out}.stirring .idea-bubble{animation:swirl 1s calc(var(--delay)*-.05) ease-out both}
+ .orb-object{display:block;position:relative;width:183px;height:196px;margin:17px auto 2px;padding:0;border:0;isolation:isolate}.orb-glass{position:absolute;z-index:1;top:4px;left:18px;width:148px;height:148px;border-radius:50%;border:1px solid #9ca6a955;background:radial-gradient(ellipse at 32% 22%,#d2d9ec25,transparent 25%),radial-gradient(ellipse at 50% 72%,#d6c2d633,transparent 45%),radial-gradient(ellipse at 60% 40%,#6d6b8a44,transparent 60%),#404c603b;box-shadow:inset -7px -10px 25px #a6a5bb1a,inset 5px 5px 15px #dde1e81a,0 0 30px #c6bcea0a,0 10px 12px #0003;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px}.orb-glass:before{content:'';position:absolute;inset:8px;border-radius:50%;border-left:2px solid #d6d6ee22;transform:rotate(30deg);pointer-events:none}.orb-glass:after{content:'';position:absolute;top:10px;left:27px;width:43px;height:17px;transform:rotate(-30deg);border-radius:50%;background:linear-gradient(#fff3,#fff0);filter:blur(2px);pointer-events:none}.orb-glass>i{position:absolute;inset:15px;background:radial-gradient(ellipse at 60% 70%,#c7aad622,transparent 55%);filter:blur(5px);transform:rotate(-25deg);pointer-events:none}.orb-word{font-family:var(--serif);font-size:27px;letter-spacing:.08em;color:#dfd5d8;text-shadow:0 0 20px #c9b6eb66;z-index:1;padding:0 12px;overflow-wrap:anywhere;max-width:100%;line-height:1.4}.orb-glass small{font-size:8px;color:#aaa9bd;z-index:1;letter-spacing:.03em}.orb-base{position:absolute;width:107px;height:41px;bottom:7px;left:39px;border-radius:20% 20% 45% 45%;background:linear-gradient(90deg,#51482f,#9b8553 20%,#655b3e 40%,#ac9764 50%,#645b3b 65%,#93834e 80%,#45452c);border-top:2px solid #b59f69;box-shadow:0 5px 10px #0004;transform:perspective(200px) rotateX(18deg);z-index:0}.orb-base:after{content:'';position:absolute;inset:7px 10px;border:1px solid #c6b78240;border-radius:8% 8% 50% 50%}.orb-halo{position:absolute;inset:8px 5px 18px;border-radius:50%;background:radial-gradient(ellipse,#9b89c114,transparent 70%);filter:blur(10px)}.orb-object:hover .orb-glass{border-color:#ccc5d480;box-shadow:inset -7px -10px 25px #a6a5bb22,0 0 35px #c6bcea15}.orb-hint{font-size:9px;text-align:center;color:#8e9687;margin:5px 0 1px}.orb-actions{display:flex;gap:5px;align-items:center;justify-content:center;flex-wrap:wrap}.orb-actions .text-button{font-size:10px;min-height:35px}.orb-actions .secondary{font-size:10px;min-height:35px;padding:6px 10px}.orb-actions .icon{width:14px;height:14px}.awakening .orb-glass{animation:orb-glow .7s ease-out}.orb-history{margin-top:25px;border-top:1px solid var(--line);padding-top:20px}.orb-history>div{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:15px}.orb-history>div>span{font-family:var(--serif);border:1px solid var(--line);padding:5px 13px;border-radius:4px;color:#b2b4b1}.search-field{display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line);padding:7px 0;color:#89977c}.search-field .icon{width:14px;height:14px}.search-field input{min-width:0;width:100%;border:0;background:transparent;color:#dbd7bc;min-height:28px;font-size:10px}.search-field input::placeholder{color:#89947c}.journal-list{max-height:290px;overflow:auto;scrollbar-width:thin;scrollbar-color:#5a6141 transparent}.journal-entry{display:block;width:100%;text-align:left;padding:17px 0;border-bottom:1px solid var(--line);position:relative}.journal-entry>small{font-size:8px;color:#9d9e81}.journal-entry>small>span{display:block;margin-top:3px;color:#8f9d80}.journal-entry h3{font-size:15px;line-height:1.8;margin-top:8px;color:#d3cfb4;padding-right:5px;overflow-wrap:anywhere}.journal-entry p{font-size:10px;line-height:1.9;color:#929c84;margin-top:5px;white-space:pre-wrap}.entry-mark{position:absolute;bottom:13px;right:0;color:#ada579}.journal-empty{text-align:center;padding:23px 0 20px;color:#9c9f80}.journal-empty>span{font-family:var(--serif);font-size:30px;color:#b3a47788}.journal-empty p{font-family:var(--serif);font-size:14px;margin:7px 0 5px}.journal-empty small{font-size:9px;color:#7f8d73}.book-edge{position:absolute;bottom:0;left:10px;right:10px;height:5px;border-top:1px solid #a7995b22;border-bottom:1px solid #a7995b22;pointer-events:none}.journal-body{font-family:var(--serif);font-size:16px;line-height:2.2;white-space:pre-wrap;overflow-wrap:anywhere;margin:24px 0;color:#dcd4bb;user-select:text}.journal-snapshot{border:1px solid var(--line);background:#ffffff03;border-radius:5px;padding:18px;margin-bottom:24px}.journal-snapshot p{display:flex;gap:15px;font-size:12px;margin-top:10px;line-height:1.8}.journal-snapshot b{min-width:65px;color:#d5c08d;font-weight:400}.detail-card{text-align:center;background:#dbcba4;color:#3e4433;padding:25px;border-radius:6px;max-width:220px;margin:15px auto 25px}.detail-card>span{font-size:45px}.detail-card h3{margin-top:16px;font-size:23px}.detail-card p{font-size:12px;margin-top:20px}.source-note{font-size:11px;color:#98a18b;padding:14px 0;line-height:1.9;overflow-wrap:anywhere}.snapshot-note{padding:12px;background:#a59d5720;color:#c4c19c;border-radius:4px;font-size:11px}
+ @keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(2deg)}}@keyframes deal{0%{opacity:.25;transform:translateY(-8px) rotateY(-90deg)}48%{opacity:1;transform:translateY(2px) rotateY(-35deg)}100%{opacity:1;transform:none}}@keyframes stir{20%{transform:rotate(2deg)}40%{transform:rotate(-2deg)}60%{transform:rotate(1deg)}100%{transform:none}}@keyframes swirl{0%{transform:translate(15px,20px) scale(.7);opacity:.4}100%{transform:none;opacity:1}}@keyframes orb-glow{0%{filter:brightness(1)}35%{filter:brightness(1.8);transform:scale(1.025)}100%{filter:brightness(1);transform:none}}
+}
+@layer mobile{@media(max-width:999px){nav.workspace-nav{grid-template-columns:repeat(3,1fr)}}}
+@layer mobile{@media(max-width:999px){.six-card-spread .material-card{min-height:225px}.six-card-spread .slots{margin:22px 0 16px}.direction-card .card-icons{gap:4px}.direction-card .card-icons>.card-symbol{font-size:30px}.direction-card .crystal-icon{width:44px;min-height:48px;padding:6px}.direction-card .mini-orb{width:31px;height:31px}.direction-card .direction-prompt{margin:0;padding:0;min-height:0;font:inherit;line-height:inherit}.direction-card .crystal-word{font-size:9px}.direction-card .crystal-word.has-word{font-size:12px}}}
+@layer forms{
+ dialog{width:min(560px,calc(100% - 28px));max-height:calc(100dvh - 48px);padding:0;background:#212a22;color:var(--text);border:1px solid #9e936359;border-radius:10px;box-shadow:0 35px 100px #0009;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#747a52 transparent}dialog::backdrop{background:#090f0cbd;backdrop-filter:blur(5px)}.dialog-inner{padding:27px}.dialog-inner>header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}.dialog-inner>header h2{font-size:24px}.dialog-inner>header .icon-button{margin:-5px -8px -5px 0;flex-shrink:0}.dialog-inner>p:not([class]){line-height:1.9;color:#bcc2ac}.field{display:flex;flex-direction:column;gap:9px;font-size:12px;color:#b9c1aa;margin:18px 0}.field input:not([type=range]),.field textarea,.field select{width:100%;min-width:0;border:1px solid #8a99703d;background:#141d17aa;color:#e4dfc7;border-radius:5px;padding:12px;font-size:16px;line-height:1.7;min-height:48px}.field textarea{resize:vertical;min-height:130px}.field input::placeholder,.field textarea::placeholder{color:#697b62}.field select{padding-right:25px}.field [type=range]{width:100%;accent-color:#c8b174;min-height:36px}.field output{font-family:var(--serif);font-size:24px;color:var(--gold);position:relative}.dialog-actions{display:flex;gap:10px;margin-top:23px;flex-wrap:wrap}.dialog-actions>.primary{flex:1}.dialog-subactions{display:flex;justify-content:space-around;border-top:1px solid var(--line);padding-top:9px;margin-top:15px}.settings-stats{display:flex;justify-content:space-around;margin:23px 0;color:#8f9d81;border:1px solid var(--line);border-radius:5px;padding:14px;font-size:11px}.settings-stats b{display:block;color:var(--gold);font-family:var(--serif);font-size:28px;font-weight:400}.settings-buttons{display:flex;flex-direction:column;gap:12px}.file-button{position:relative;cursor:pointer;overflow:hidden}.file-button input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}.settings-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:20px;border-top:1px solid var(--line);padding-top:15px}.settings-bottom>span{font-size:10px;color:#89977a}.library-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.library-card{display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:5px;padding:17px 12px;gap:9px;min-height:135px;background:#6d78541a;min-width:0}.library-card:hover{background:#6d785433}.library-card>span{font-size:28px}.library-card>b{font-family:var(--serif);font-size:16px;line-height:1.8;font-weight:400;overflow-wrap:anywhere}.library-card>small{font-size:9px;color:#87987a}#toast{position:fixed;bottom:max(25px,env(safe-area-inset-bottom));left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;z-index:10;width:max-content;max-width:calc(100vw - 30px);background:#d9c99f;color:#2b3424;border:1px solid #f1deb1;padding:12px 20px;border-radius:7px;box-shadow:0 10px 40px #0006;font-size:13px;transition:opacity .18s,transform .18s;text-align:center}#toast.show{opacity:1;transform:translate(-50%,0)}
+}
+@layer mobile{
+ @media(min-width:1600px){.app-shell{padding:0 56px}.material-card{min-height:240px}.spread-panel{min-height:790px}.slots{gap:17px}.direction-cards{gap:13px}.card-text{font-size:15px}.filled .card-text{font-size:18px}.direction b{font-size:12px}.direction small{font-size:7px}.card-foot{font-size:9px}.slot-label small{display:inline;font-size:7px;color:#819070;letter-spacing:.06em}}
+ @media(min-width:1000px) and (max-width:1199px){.app-shell{padding:0 22px}.workspace{grid-template-columns:minmax(190px,.8fr) minmax(420px,1.85fr) minmax(195px,.8fr);gap:12px}.panel{padding:16px}.spread-panel{padding:20px}.slots{gap:9px}.direction{padding:8px 5px;column-gap:4px;grid-template-columns:20px 1fr}.direction>span{font-size:21px}.desk-caption{display:none}.welcome h1{font-size:29px}.material-card{padding-left:8px;padding-right:8px}.filled .card-text{font-size:14px}.card-foot{font-size:7px}.vessel{margin-left:-7px;margin-right:-7px}.cauldron-panel h2,.orb-panel h2,.journal-panel h2{font-size:18px}}
+ @media(max-width:999px){
+  .app-shell{padding:0 22px;max-width:700px;padding-bottom:calc(93px + env(safe-area-inset-bottom))}.site-header{height:83px}.brand{font-size:23px;gap:10px}.brand-symbol{font-size:43px}.brand small{font-size:6px;margin-top:6px}.header-meta{gap:0}.local-status{display:none}.header-meta .icon-button{width:40px;height:44px}.welcome{padding:27px 0 25px}.welcome .eyebrow{font-size:8px;letter-spacing:.14em;margin-bottom:10px}.welcome h1{font-size:27px;line-height:1.6}.welcome>div>p:last-child{font-size:11px;max-width:290px;line-height:1.9;margin-top:9px}.moon-note{display:none}.desk-bar{padding:0;border:0;display:block}.desk-caption{display:none}.workspace-nav{position:fixed;bottom:0;left:0;right:0;z-index:5;border-radius:0;padding:9px 12px calc(10px + env(safe-area-inset-bottom));border:0;border-top:1px solid #8b95614a;background:#19221ef5;backdrop-filter:blur(12px);display:grid;grid-template-columns:repeat(4,1fr);gap:8px;box-shadow:0 -10px 30px #0002}.workspace-nav button{flex-direction:column;justify-content:center;gap:5px;min-height:52px;padding:5px 0;font-size:10px;border-radius:5px}.workspace-nav .icon{width:21px;height:21px}.workspace-nav button.selected{background:#75784825;box-shadow:none;color:#e0c990}.desk-bar>.quick-button{position:absolute;top:103px;right:22px;min-height:38px;padding:5px 10px;font-size:10px}.desk-bar>.quick-button .icon{width:14px;height:14px}.welcome h1{max-width:280px}.welcome h1 em{display:block}.workspace,.workspace:not(.focus-spread){display:block;max-width:none;margin:0;scroll-margin-top:18px}.workspace .panel,.workspace .right-column .panel,.workspace:not(.focus-spread)>.panel,.workspace:not(.focus-spread) .right-column .panel{display:none!important}.workspace .panel.active,.workspace .right-column .panel.active,.workspace:not(.focus-spread) .panel.active{display:block!important}.right-column{display:contents!important}.spread-panel{min-height:0;padding:21px 20px 20px}.panel{border-radius:9px}.panel-top .eyebrow{font-size:8px}.spread-heading h2{font-size:22px}.spread-heading p{font-size:10px;max-width:240px;line-height:1.9}.small-seal{font-size:30px}.panel-top{margin-bottom:14px}.question-line{margin-top:18px;gap:7px}.question-line>span{font-size:9px}.question-line input{font-size:16px;min-height:38px}.slots{gap:9px;margin-top:25px;margin-bottom:23px}.slot-label{gap:5px;font-size:11px;margin-bottom:10px}.slot-label b{font-size:20px}.slot-label small{display:none}.material-card{min-height:190px;padding:26px 7px 23px;gap:16px}.card-symbol{font-size:34px}.filled .card-symbol{font-size:31px}.card-text,.filled .card-text{font-size:13px;line-height:1.85}.empty .card-text{font-size:10px}.card-foot{font-size:7px;line-height:1.9}.card-corner.top{top:11px;left:10px}.card-corner.bottom{bottom:11px;right:10px}.ritual-circle{width:250px;height:250px;top:195px}.draw-row{margin-bottom:24px;gap:16px}.draw-row .primary{font-size:13px;min-height:46px;min-width:170px}.draw-row small{font-size:8px}.section-label{font-size:11px}.section-label>span{font-size:9px}.direction-cards{gap:7px}.direction{display:flex;flex-direction:column;text-align:center;justify-content:center;gap:3px;padding:9px 3px;min-height:90px}.direction>span{font-size:25px;line-height:1.2}.direction b{font-size:11px}.direction small{font-size:6px}.direction-prompt{font-size:10px;line-height:1.95;min-height:45px;margin-top:13px}.direction-prompt p{font-size:11px}.spread-actions{gap:8px;margin-top:16px}.spread-actions .secondary{font-size:10px;min-height:44px;padding:7px 5px;gap:5px}.spread-actions .icon{width:16px;height:16px}.closing-note{font-size:8px;line-height:1.9}.site-footer{margin-top:21px;padding:16px 0 4px;justify-content:center}.site-footer>span:last-child{display:none}.site-footer>span:first-child{font-size:9px}.cauldron-panel h2,.orb-panel h2,.journal-panel h2{font-size:25px}.workspace:not(.focus-spread) .cauldron-panel,.focus-journal .journal-panel,.focus-orb .orb-panel{padding:23px}.workspace:not(.focus-spread) .vessel{height:300px;max-width:320px;margin-top:25px}.workspace:not(.focus-spread) .idea-list{display:block}.workspace:not(.focus-spread) .vessel-actions{justify-content:space-between;gap:10px}.idea-row b{font-size:13px}.idea-row small{font-size:10px}.idea-row{padding:17px 0}.idea-bubble small{font-size:10px}.bubble-0{width:112px;height:112px;top:33px}.bubble-1{width:95px;height:95px;top:159px}.bubble-2{top:40px;width:80px;height:80px}.bubble-3{top:178px;width:76px;height:76px}.bubble-4{top:130px;width:72px;height:72px}.bubble-5{top:215px;width:58px;height:58px}.vessel-actions .secondary,.vessel-actions .text-button{min-height:44px;font-size:12px}.panel-description{font-size:12px}.focus-orb .orb-object{width:260px;height:285px}.focus-orb .orb-glass{left:20px;width:220px;height:220px}.focus-orb .orb-base{left:60px;width:140px}.focus-orb .orb-actions .text-button,.focus-orb .orb-actions .secondary{font-size:12px;min-height:44px}.focus-journal .journal-list{display:block;max-height:none}.focus-journal .journal-entry{padding:20px 0;margin-bottom:0;border-width:0 0 1px;min-height:0}.journal-entry>small{font-size:10px}.journal-entry h3{font-size:19px}.journal-entry p{font-size:12px}.journal-entry>small>span{display:inline;margin-left:8px}.journal-tools .secondary,.journal-tools .text-button{min-height:44px;font-size:12px}.search-field input{font-size:16px;min-height:38px}.journal-empty p{font-size:17px}.journal-empty small{font-size:11px}.dialog-inner{padding:22px}.dialog-inner>header h2{font-size:22px}.dialog-inner .field{margin:17px 0}.dialog-subactions{flex-wrap:wrap}.dialog-actions .primary,.dialog-actions .secondary{min-height:48px}#toast{bottom:calc(93px + env(safe-area-inset-bottom));font-size:12px}.library-list{gap:9px}.library-card{padding:15px 9px}.library-card>b{font-size:14px}.settings-bottom{gap:10px}.settings-bottom>span{font-size:9px}
+ }
+ @media(max-width:999px){.welcome{padding:22px 0 20px}.welcome h1{font-size:25px;line-height:1.5}.welcome>div>p:last-child{margin-top:6px;line-height:1.7}.spread-panel{padding-top:19px}.question-line input{min-height:32px}.slots{margin-top:21px;margin-bottom:21px}.material-card{min-height:175px}}
+ @media(max-width:359px){.app-shell{padding-left:14px;padding-right:14px}.spread-panel{padding:19px 12px}.welcome h1{font-size:25px}.desk-bar>.quick-button{right:14px;font-size:9px}.slots{gap:7px}.material-card{min-height:175px}.card-text,.filled .card-text{font-size:12px}.empty .card-text{font-size:9px}.section-label>span{font-size:8px}.card-foot{font-size:6px}}
+ @media(max-width:999px){.direction-table{grid-template-columns:1fr;gap:20px}.direction-deck{display:grid;grid-template-columns:42px 1fr;gap:5px 17px}.direction-deck>.deck-object{grid-row:span 2;margin:0}.direction-deck>.secondary{min-height:44px}.direction-deck>small{grid-column:2}.direction-result{min-height:128px}.direction-result .direction-prompt{margin:9px 0 0;min-height:0;font-size:12px;line-height:1.8}.direction-detail{font-size:11px;line-height:1.9}}
+ @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+}
+@layer objects{
+ .direction-table{display:grid;grid-template-columns:145px minmax(0,1fr);gap:22px;align-items:center;margin-top:20px}.direction-deck{display:flex;flex-direction:column;align-items:center;gap:12px;min-width:0}.direction-deck-object{background:repeating-linear-gradient(-45deg,#ba9b7317 0 1px,transparent 1px 7px),#343027;border-color:#b2956c;margin:2px 0 5px}.direction-deck-object>span{color:#d7bc8c;font-size:24px}.direction-deck>.secondary{font-size:11px;padding:8px 9px;width:100%;white-space:nowrap}.direction-deck>.secondary .icon{width:15px;height:15px}.direction-deck>small{font-size:9px;color:#8e9b81;line-height:1.7}.direction-result{display:flex;align-items:center;gap:18px;position:relative;min-height:163px;padding:23px 20px;background:linear-gradient(120deg,#bfa16a12,transparent),#2d3024;border:1px solid #baa16b64;border-radius:7px;box-shadow:0 7px 15px #0002}.direction-result:before{content:'';position:absolute;inset:6px;border:1px solid #baa16b25;border-radius:3px;pointer-events:none}.direction-symbol{font-family:var(--serif);font-size:45px;line-height:1;color:#cbb279;flex-shrink:0}.direction-result>div{min-width:0}.direction-result strong{display:block;font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:.05em;color:#dfcb98}.direction-result small{display:block;font-size:8px;letter-spacing:.16em;color:#979f7c;margin-top:4px}.direction-result .direction-prompt{padding:0;min-height:0;margin:12px 0 0;font-size:11px;line-height:1.9;color:#b6c09d}.direction-result.awaiting{border-style:dashed;background:#17201844;box-shadow:none}.direction-result.awaiting strong{font-size:17px;color:#b0b597}.direction-result.awaiting .direction-symbol{opacity:.55}.direction-detail{font-size:11px;color:#9caa8b;line-height:1.95;margin-top:16px}.direction-result.turning{animation:direction-reveal .45s ease-out}@keyframes direction-reveal{0%{transform:perspective(600px) rotateY(-55deg);filter:brightness(.8)}100%{transform:none;filter:none}}
+}
+
+@layer mobile {
+  .workspace.focus-spread { grid-template-columns: minmax(260px, .85fr) minmax(480px, 2fr); }
+  .cauldron-tools { display: grid; gap: 12px; margin-top: 22px; }
+  .idea-sort-label { display: flex; align-items: center; gap: 12px; color: #a6b297; font-size: 11px; }
+  .idea-sort-label select { flex: 1; min-width: 0; min-height: 44px; border: 1px solid var(--line); background: #162019; color: #d7d8bb; border-radius: 5px; padding: 6px 10px; }
+  .idea-preview { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 11px; line-height: 1.9; color: #97a58c; margin-top: 5px; }
+  .idea-row .idea-date { font-size: 10px; color: #b6b08c; margin-top: 6px; }
+  .record-date { color: #c0b281; font-size: 12px; line-height: 1.9; }
+  .empty-ideas { padding: 22px 0; color: #9caa8b; font-size: 12px; }
+  .idea-snapshot { margin-top: 22px; border: 1px solid var(--line); border-radius: 5px; padding: 6px 14px; }
+  .idea-snapshot summary { display: flex; align-items: center; min-height: 44px; color: #cdb782; font-size: 13px; cursor: pointer; }
+  .idea-snapshot-content { padding: 10px 0 16px; }
+  .idea-snapshot-content > small { color: #98a58a; }
+  .idea-snapshot-content p { display: flex; gap: 15px; font-size: 12px; line-height: 1.9; margin-top: 12px; }
+  .idea-snapshot-content b { color: #d4bf88; font-weight: 400; min-width: 65px; }
+  .idea-snapshot-content span { min-width: 0; }
+  .idea-snapshot-content small { color: #a4b297; font-size: 11px; }
+  .six-card-spread .direction-card .depth-control { display: flex; align-items: center; justify-content: center; width: 74px; min-height: 74px; padding: 5px; flex-shrink: 0; }
+  .depth-disc { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 64px; height: 64px; border: 1px solid #9a8650; border-radius: 50%; background: radial-gradient(ellipse at 30% 20%, #d6c993, #837543); box-shadow: inset -4px -5px 12px #4d482344; color: #332f1e; }
+  .depth-arrow { font-family: var(--serif); font-size: 33px; line-height: 1; }
+  .depth-ocean { display: block; flex-shrink: 0; width: 48px; height: 56px; }
+  .depth-ocean svg { display: block; width: 100%; height: 100%; }
+  .depth-control:hover .depth-disc { border-color: #e7ce8d; filter: brightness(1.08); }
+  .direction-star { color: #78806a; text-shadow: none; }
+  .direction-star:hover { color: #acaa7c; }
+  .direction-star.is-lit { color: #f2d58b; background: radial-gradient(circle,#d2b16c33,transparent 70%); text-shadow: 0 0 9px #f4d387aa,0 0 22px #d2b16c88; }
+  .material-card.direction-card.face-down { background: repeating-linear-gradient(45deg,#bac18806 0 1px,transparent 1px 10px),linear-gradient(145deg,#294138,#1a2c26); border-color: #8c865366; color: #c2b37c; box-shadow: 0 8px 16px #0002,inset 0 0 24px #0c18184d; }
+  .direction-card.face-down::before { border-color: #ac9d5d55; }
+  .direction-card.face-down .card-text { font-size: 13px; letter-spacing: .08em; }
+  .direction-card.face-down .card-foot { color: #a1a37c; }
+  .direction-back-seal { display: flex; align-items: center; justify-content: center; width: 65px; height: 65px; border: 1px solid #b3a56b66; outline: 1px solid #b3a56b22; outline-offset: 5px; border-radius: 50%; font-family: var(--serif); font-size: 36px; color: #c7b57b; }
+  .card-image { display: inline-block; width: 52px; height: 52px; object-fit: contain; vertical-align: middle; }
+  .dialog-notice { position: sticky; top: 0; z-index: 1; border: 1px solid #a39556; border-radius: 5px; padding: 12px; background: #303b2e; color: #e5d29a; font-size: 12px; line-height: 1.8; margin: 12px 0; }
+  .idea-bubble .card-image { width: 28px; height: 28px; }
+  .idea-bubble.bubble-5 .card-image { width: 20px; height: 20px; }
+  .idea-row .list-icon .card-image { width: 26px; height: 26px; }
+  .library-item { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .library-item[hidden] { display: none; }
+  .library-item .library-card { width: 100%; flex: 1; border: 0; border-radius: 0; }
+  .library-card .card-image { width: 40px; height: 40px; }
+  .deck-toggle { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px; min-height: 48px; padding: 9px 12px; border-top: 1px solid var(--line); color: #9ca68c; font-size: 11px; background: #131c1855; }
+  .deck-toggle.included { color: #d1bd84; }
+  .deck-toggle small { font-size: 9px; }
+  .deck-toggle:hover { background: #b7ab681c; }
+  .deck-checkbox { display: flex; gap: 12px; align-items: center; min-height: 56px; margin: 20px 0; cursor: pointer; font-size: 13px; line-height: 1.8; }
+  .deck-checkbox input { width: 22px; height: 22px; accent-color: #c9b377; flex-shrink: 0; }
+  .deck-checkbox small { display: block; color: #98a58a; font-size: 11px; }
+  .icon-picker { min-width: 0; margin: 22px 0; padding: 16px; border: 1px solid var(--line); border-radius: 7px; }
+  .icon-picker legend { color: #d0bd85; font-size: 13px; padding: 0 6px; }
+  .icon-preview-row { display: flex; align-items: center; gap: 14px; }
+  .icon-preview { display: flex; align-items: center; justify-content: center; width: 70px; height: 70px; flex-shrink: 0; border: 1px solid #a6965b66; border-radius: 6px; background: #e4d2a6; font-size: 34px; }
+  .icon-preview-row p { font-size: 12px; line-height: 1.9; color: #a6b297; }
+  .icon-options { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); gap: 5px; }
+  .icon-option { display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 44px; border: 1px solid var(--line); border-radius: 4px; font-size: 24px; }
+  .icon-option[aria-pressed=true] { border-color: #dfc784; background: #d6bc7522; }
+  .custom-icon { margin: 14px 0; color: #a6b297; font-size: 12px; }
+  .custom-icon summary { display: flex; align-items: center; min-height: 44px; cursor: pointer; }
+  .icon-upload-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .icon-upload-row .file-button, .icon-upload-row button { min-height: 44px; font-size: 12px; }
+  .idea-snapshot .card-image { width: 26px; height: 26px; }
+  .six-card-spread .spread-row > .slots { margin: 0; }
+  .six-card-spread .slot-wrap { display: flex; flex-direction: column; min-width: 0; }
+  .six-card-spread .slot-label { flex-shrink: 0; }
+  .six-card-spread .material-card { flex: 1; }
+  .six-card-spread .direction-row > .direction-slot { grid-column: auto; }
+  .spread-panel > .draw-row { flex-direction: column; gap: 16px; margin: 30px 0 20px; }
+  .six-card-spread .direction-card .crystal-icon { width: 74px; min-height: 74px; padding: 5px; }
+  .six-card-spread .direction-card .mini-orb { width: 64px; height: 64px; }
+  .six-card-spread .direction-card .mini-orb .crystal-word {
+    display: block; margin: 0; padding: 4px; color: #f2e6fb; font-size: 26px;
+    line-height: 1.25; max-width: 100%; overflow-wrap: anywhere;
+  }
+  .six-card-spread .direction-card .mini-orb .crystal-word.has-word { font-size: 14px; }
+  @media (max-width: 999px) {
+    .direction-back-seal { width: 44px; height: 44px; font-size: 26px; outline-offset: 4px; }
+    .direction-card.face-down .card-text { font-size: 12px; }
+    .card-symbol .card-image { width: 40px; height: 40px; }
+    .icon-picker { padding: 10px; }
+    .icon-options { grid-template-columns: repeat(4,minmax(0,1fr)); }
+    nav.workspace-nav { grid-template-columns: repeat(2, 1fr); }
+    .cauldron-tools .search-field input, .idea-sort-label select { font-size: 16px; }
+    .six-card-spread .direction-card[data-direction=depth] .card-icons > .card-symbol { font-size: 20px; }
+    .six-card-spread .direction-card .depth-control { width: 54px; min-height: 58px; padding: 2px; }
+    .depth-disc { width: 50px; height: 50px; }
+    .depth-arrow { font-size: 26px; }
+    .depth-ocean { width: 28px; height: 40px; }
+    .app-shell { padding-left: 14px; padding-right: 14px; }
+    .spread-panel { padding-left: 12px; padding-right: 12px; }
+    .six-card-spread .spread-row { grid-template-columns: 34px minmax(0, 1fr); gap: 8px; }
+    .six-card-spread .direction-card .card-icons { gap: 2px; }
+    .six-card-spread .direction-card[data-direction=lateral] .card-icons > .card-symbol { font-size: 20px; }
+    .six-card-spread .direction-card .crystal-icon { width: 54px; min-height: 58px; padding: 2px; }
+    .six-card-spread .direction-card .mini-orb { width: 50px; height: 50px; }
+    .six-card-spread .direction-card .mini-orb .crystal-word.has-word { font-size: 11px; }
+  }
+  @media (max-width: 359px) {
+    .six-card-spread .direction-card[data-direction=depth] .card-icons > .card-symbol { font-size: 14px; }
+    .six-card-spread .direction-card .depth-control { width: 42px; min-height: 46px; padding: 2px; }
+    .depth-disc { width: 38px; height: 38px; }
+    .depth-arrow { font-size: 21px; }
+    .depth-ocean { width: 21px; height: 32px; }
+    .six-card-spread .direction-card { padding-left: 4px; padding-right: 4px; }
+    .six-card-spread .direction-card[data-direction=lateral] .card-icons > .card-symbol { font-size: 14px; }
+    .six-card-spread .direction-card .crystal-icon { width: 42px; min-height: 46px; padding: 2px; }
+    .six-card-spread .direction-card .mini-orb { width: 38px; height: 38px; }
+    .six-card-spread .direction-card .mini-orb .crystal-word.has-word { font-size: 9px; }
+  }
+}
+</style></head><body><div id="root"></div><noscript>Arcana 需要啟用 JavaScript；所有資料保存在你的裝置。</noscript><script>(()=>{'use strict';const factories={"app.js":(exports,require)=>{
+const { ROLES,DIRECTIONS,DEPTH_SHIFTS,RECORD_KINDS,seed,clone,id,now,activeSession,newIdea,event,dealSix,rerollRow,drawLateralWord,toggleDepthShift,mergeStates,setCardInDeck,toggleDirectionRow }=require("data.js");
+const { load,save,download,readBackup,KEY }=require("storage.js");
+const { esc,date,icon,button,modal,field,textarea,toast,playTone,copyText }=require("ui.js");
+const { cardArt,iconPicker,bindIconPicker }=require("card-icons.js");
+const { buildGamePrompt }=require("prompt.js");
+const { spreadView }=require("spread.js");
+const { cauldronView }=require("cauldron.js");
+let state,loadError='',conflict=false,order=[],query='',incoming=null;
+try{state=load();}catch(e){state=seed();loadError=e.message;}
+const root=document.querySelector('#root');
+const nav=[['spread','cards','牌陣'],['cauldron','cauldron','水槽']];
+function render(){
+  const scroll=window.scrollY;
+  root.innerHTML=`<div class="app-shell"><header class="site-header"><a class="brand" href="#" data-action="home" aria-label="Arcana 首頁"><span class="brand-symbol">✧</span><span>ARCANA<small>IDEA ALCHEMY</small></span></a><div class="header-meta"><span class="local-status"><i></i><span id="save-status">${loadError?'資料待修復':conflict?'另一分頁有變更':'只在此裝置 · 自動儲存'}</span></span>${button(icon(state.ui.muted?'mute':'volume'),'mute','icon-button',`aria-label="${state.ui.muted?'開啟音效':'關閉音效'}"`)}${button(icon('settings'),'settings','icon-button','aria-label="設定與備份"')}</div></header>
+  ${loadError||conflict?`<div class="error-banner" role="alert">${esc(loadError||'另一個分頁已更新資料。請先匯出目前備份，再重新載入，以免互相覆寫。')} ${button('匯出目前備份','export','text-button')} ${button('重新載入','reload','text-button')}</div>`:''}
+  <div class="welcome"><div><p class="eyebrow">YOUR QUIET CORNER OF POSSIBILITY</p><h1>留一點未知，<em>讓靈感發生。</em></h1><p>抽一張牌，攪動一個念頭。今天，不必急著有答案。</p></div><div class="moon-note">${icon('moon')}<span>桌上燭火還亮著。<small>隨時離開，也隨時回來。</small></span></div></div>
+  <div class="desk-bar"><nav class="workspace-nav" aria-label="煉金工作區">${nav.map(([view,i,label])=>`<button data-action="view" data-id="${view}" class="${state.ui.activeView===view?'selected':''}" aria-current="${state.ui.activeView===view?'page':'false'}">${icon(i)}<span>${label}</span></button>`).join('')}</nav><div class="desk-caption"><span>✦</span> THE ALCHEMIST’S WORKBENCH</div>${button(icon('plus')+' 快記一句','new-idea','quick-button')}</div>
+  <main id="workbench" class="workspace focus-${state.ui.activeView}">${spreadView(state)}${cauldronView(state,order,query)}</main>
+  <footer class="site-footer"><span>✧ &nbsp; 讓念頭休息，也是創作的一部分。</span><span>ARCANA <i>·</i> A SPACE FOR UNFINISHED THOUGHTS</span></footer></div>`;
+  window.scrollTo(0,scroll);
+}
+document.body.insertAdjacentHTML('beforeend','<dialog id="dialog" aria-label="Arcana 操作視窗"></dialog><div id="toast" role="status" aria-live="polite"></div>');
+function commit(fn,{redraw=true}={}){
+  if(loadError)throw Error('原始資料讀取失敗。請先在設定匯出原始資料，或匯入有效備份。');
+  if(conflict)throw Error('另一分頁已有新資料，請先重新載入。');
+  const next=clone(state);fn(next);state=save(next);if(redraw)render();
+  const status=document.querySelector('#save-status');if(status)status.textContent='已儲存在此裝置';return true;
+}
+function go(view){commit(s=>s.ui.activeView=view);if(matchMedia('(max-width: 999px)').matches)document.querySelector('#workbench').scrollIntoView({behavior:'instant',block:'start'});}
+function saveButton(text='保存'){return `<button type="submit" class="primary">${icon('check')} ${text}</button>`;}
+const findIdea=(key)=>state.ideas.find(x=>x.id===key);
+function snapshotView(session){
+  if(!session)return '';
+  return `<details class="idea-snapshot"><summary>保存時的牌陣</summary><div class="idea-snapshot-content"><small>${date(session.createdAt)}</small>${Object.entries(ROLES).map(([slot,role])=>`<p><b>${slot} · ${role.name}</b><span>${session.snapshot[slot]?cardArt(session.snapshot[slot])+' '+esc(session.snapshot[slot].text):'留白'}<br/><small>${!session.directionsRevealed?'方向牌蓋起':session.directions[slot]?DIRECTIONS[session.directions[slot]].name:'方向留白'}${session.directionsRevealed&&session.directions[slot]==='depth'&&DEPTH_SHIFTS[session.depthShifts[slot]]?' · '+DEPTH_SHIFTS[session.depthShifts[slot]].name:''}${session.directionsRevealed&&session.randomWords[slot]?' · '+esc(session.randomWords[slot]):''}</small></span></p>`).join('')}${session.question?`<p>${esc(session.question)}</p>`:''}</div></details>`;
+}
+function ideaForm(key=null,origin={type:'manual'},text=''){
+  const idea=key?findIdea(key):null;
+  const captured=!idea&&origin.type==='session'?clone(state.sessions.find(s=>s.id===origin.id)):null;
+  let iconImage=idea?.iconImage||null;
+  const initialIcon=idea||{icon:'✦'};
+  const sources={manual:'隨手記錄',session:'牌陣發現',idea:'另一個想法',seed:'預設想法','legacy-journal':'舊紀錄','legacy-draft':'未完成的紀錄'};
+  const dialog=modal(idea?'照看這個念頭':'放下一個念頭',`
+    <p class="record-date">${idea?`記錄日期 <time datetime="${esc(idea.createdAt)}">${date(idea.createdAt)}</time>`:'保存時會自動留下日期'}${idea?.isDraft?' · 未完成草稿':''}</p>
+    ${field('一句話','text',idea?.text||text,'required maxlength="240" autofocus placeholder="有一個問題，一直留在腦海…"')}
+    ${iconPicker(initialIcon,'想法圖示')}
+    ${textarea('細節與發現（可空白）','notes',idea?.notes||'','maxlength="20000"')}
+    <label class="field">記錄類型<select name="kind">${Object.entries(RECORD_KINDS).map(([kind,label])=>`<option value="${kind}" ${(idea?.kind||'inspiration')===kind?'selected':''}>${label}</option>`).join('')}</select></label>
+    <label class="field">浮力 <output id="priority-output">${Math.round((idea?.priority??.6)*100)}%</output><input name="priority" type="range" min="0" max="100" value="${Math.round((idea?.priority??.6)*100)}"/></label>
+    <p class="microcopy">浮力越高，越靠近水面。系統不會自動修改你的選擇。</p>
+    <label class="field">狀態<select name="status"><option value="incubating" ${idea?.status!=='resting'?'selected':''}>醞釀中</option><option value="resting" ${idea?.status==='resting'?'selected':''}>休眠中</option></select></label>
+    ${snapshotView(idea?.snapshot||captured)}
+    ${idea?`<p class="source-note">來源：${esc(sources[idea.origin.type]||'相關記錄')}</p>`:''}
+    <div class="dialog-actions">${saveButton(idea?'保存變更':'放入水槽')}${idea?button('撈取到牌陣','idea-spread','secondary',`data-id="${idea.id}"`):''}</div>
+    ${idea?`<div class="dialog-subactions">${button('鍛造成素材牌','forge','text-button',`data-id="${idea.id}"`)}</div><p class="microcopy">編輯後請先保存，再使用下方操作。</p>`:''}
+  `,(form,dialog)=>{
+    const title=String(form.get('text')).trim();if(!title)return toast('留下一句話，再把它放進水槽。');
+    order=[];commit(s=>{
+      const value=key?s.ideas.find(v=>v.id===key):newIdea(title,origin);
+      Object.assign(value,{text:title,icon:String(form.get('icon')).trim()||'✦',notes:String(form.get('notes')),kind:form.get('kind'),priority:Number(form.get('priority'))/100,status:form.get('status'),updatedAt:now()});delete value.isDraft;if(iconImage)value.iconImage=iconImage;else delete value.iconImage;
+      if(!key){if(captured){value.snapshot=clone(captured);value.sessionIds=[captured.id];value.cardIds=Object.values(captured.slots).filter(Boolean);value.ideaIds=captured.ideaId?[captured.ideaId]:[];}s.ideas.push(value);}
+    });dialog.close();toast('這個念頭與日期已留在水槽。');
+  });
+  bindIconPicker(dialog,initialIcon,value=>iconImage=value);
+}
+function library(){
+  const search=document.querySelector('#card-search')?.value||'',cards=state.cards.filter(c=>!c.deleted),deck=state.decks.find(d=>d.id==='main');
+  modal('素材牌庫',`<p class="muted">共 ${cards.length} 張素材，${cards.filter(c=>deck.cardIds.includes(c.id)).length} 張參與抽牌。不抽取的素材仍可編輯、手動放入牌陣。</p>${button(icon('plus')+' 新增素材牌','new-card','primary')}<label class="search-field">${icon('search')}<input id="card-search" type="search" value="${esc(search)}" placeholder="搜尋素材或標籤" aria-label="搜尋素材牌"/></label><div class="library-list">${cards.map(c=>{const included=deck.cardIds.includes(c.id);return `<article class="library-item" ${(c.text+' '+c.tags.join(' ')).toLowerCase().includes(search.toLowerCase())?'':'hidden'} data-search="${esc(c.text+' '+c.tags.join(' '))}"><button type="button" class="library-card" data-action="edit-card" data-id="${c.id}"><span>${cardArt(c)}</span><b>${esc(c.text)}</b><small>${esc(c.tags.join(' · '))||'自由素材'} ↗</small></button><button type="button" class="deck-toggle ${included?'included':''}" data-action="toggle-card-deck" data-id="${c.id}" aria-pressed="${included}" aria-label="${included?'移出牌堆':'放入牌堆'}：${esc(c.text)}"><span>${included?'✦ 抽牌中':'○ 不抽取'}</span><small>${included?'移出牌堆':'放入牌堆'}</small></button></article>`;}).join('')}</div>`);
+}
+function cardForm(key=null,origin={type:'manual'},text='',sourceIcon=null){
+  const c=state.cards.find(c=>c.id===key),included=!c||state.decks.find(d=>d.id==='main').cardIds.includes(c.id);
+  const initialIcon=c||sourceIcon;
+  let iconImage=initialIcon?.iconImage||null;
+  const dialog=modal(c?'雕琢這張素材':'鍛造一張素材',`${field('一句話','text',c?.text||text,'required maxlength="240" autofocus')}${iconPicker(initialIcon,'素材圖示')}${field('標籤（以逗號分隔）','tags',c?.tags.join(', ')||'','maxlength="800"')}<label class="deck-checkbox"><input type="checkbox" name="inDeck" ${included?'checked':''}/><span>放入牌堆，參與隨機抽牌<small>關閉後仍保留在素材牌庫。</small></span></label><label class="field">保存後放到牌陣<select name="slot"><option value="">先留在素材牌庫</option>${Object.entries(ROLES).map(([k,r])=>`<option value="${k}">${k} · ${r.name}</option>`).join('')}</select></label><p class="source-note">來源：${esc((c?.origin||origin).type)}${(c?.origin||origin).id?' · '+esc((c?.origin||origin).id):''}</p><div class="dialog-actions">${saveButton()}${c?button('刪除素材牌','delete-card','danger',`data-id="${key}"`):''}</div>`,(f,d)=>{
+    const t=String(f.get('text')).trim();if(!t)return toast('素材需要一句話。');
+    const slot=f.get('slot'),inDeck=f.has('inDeck');
+    commit(s=>{
+      const card=key?s.cards.find(x=>x.id===key):{id:id('card'),origin};
+      Object.assign(card,{text:t,icon:String(f.get('icon')).trim()||'✧',tags:String(f.get('tags')).split(/[,，]/).map(t=>t.trim()).filter(Boolean)});
+      if(iconImage)card.iconImage=iconImage;else delete card.iconImage;
+      if(!key)s.cards.push(card);setCardInDeck(s,card.id,inDeck);
+      if(slot){const session=activeSession(s);event(session,'assign',{slot,previousCard:session.snapshot[slot],cardId:card.id});session.slots[slot]=card.id;session.snapshot[slot]=clone(card);s.ui.activeView='spread';}
+    });d.close();toast(slot?'素材已放入牌陣。':inDeck?'素材已保存，現在可從主牌堆抽到。':'素材已留在牌庫，暫不參與抽牌。');
+  });
+  bindIconPicker(dialog,initialIcon,value=>iconImage=value);
+}
+function slotDialog(slot){const c=activeSession(state).snapshot[slot];if(!c)return;modal(`${slot} · ${ROLES[slot].name}`,`<div class="detail-card"><span>${cardArt(c)}</span><h3>${esc(c.text)}</h3><p>${ROLES[slot].question}</p></div><p class="muted">這張牌此刻扮演「${ROLES[slot].name}」。你會怎麼解讀？同樣的素材，換一個位置可能就改變了意思。</p><div class="dialog-actions">${button('只重抽這張','reroll','primary',`data-slot="${slot}"`)}${button('查看素材','edit-card','secondary',`data-id="${c.id}"`)}</div><div class="dialog-subactions">${Object.entries(ROLES).filter(([k])=>k!==slot).map(([k,r])=>button(`與 ${k} · ${r.name} 交換`,'swap-slot','text-button',`data-from="${slot}" data-to="${k}"`)).join('')}</div>`);}
+function swapSlots(from,to){if(!Object.hasOwn(ROLES,from)||!Object.hasOwn(ROLES,to)||from===to)return;commit(s=>{const v=activeSession(s);[v.slots[from],v.slots[to]]=[v.slots[to],v.slots[from]];[v.snapshot[from],v.snapshot[to]]=[v.snapshot[to],v.snapshot[from]];event(v,'swap',{from,to});});toast('素材換了位置，也換了一個問題。');}
+function settings(){
+  modal('照顧你的工作桌',`<p class="muted">沒有帳號，沒有雲端。這張桌子的內容，保存在此瀏覽器的 localStorage。</p><div class="settings-stats"><span><b>${state.ideas.length}</b> 想法</span><span><b>${state.cards.filter(c=>!c.deleted).length}</b> 素材</span><span><b>${state.sessions.length}</b> 牌局</span></div><div class="settings-buttons">${button(icon('download')+' 匯出 JSON 備份','export','primary')}<label class="file-button secondary">匯入 JSON 備份<input type="file" accept=".json,application/json" id="import-file"/></label>${loadError?button('下載無法讀取的原始資料','export-raw'):''}</div><p class="source-note">不同網址、不同裝置與無痕模式不共享資料。清除網站資料也會移除這張桌子，請定期匯出備份。已載入後可離線操作；離線重新開頁尚未支援。</p><div class="settings-bottom">${button('清空本機資料','reset','danger')}<span>版本 1.2 · Schema 3</span></div>`);
+}
+function confirmReset(){modal('清空這張工作桌？',`<p>這會移除所有想法、素材牌與牌局，回到預設桌面。此操作無法復原，請先匯出備份。</p><div class="dialog-actions">${button('先匯出備份','export','secondary')}${saveButton('確認清空並重設')}</div>`,(_,d)=>{const next=seed();next.revision=state.revision;state=save(next);loadError='';conflict=false;order=[];query='';d.close();render();toast('已重設為預設桌面。');});}
+function importConfirm(){modal('還原這份備份',`<p>已檢查 Schema 與來源關聯。備份包含 ${incoming.ideas.length} 個想法、${incoming.cards.length} 張素材、${incoming.sessions.length} 次牌局。</p><label class="field">還原方式<select name="mode"><option value="merge">合併 · 保留雙方全部資料（匯入項目使用新 ID）</option><option value="replace">覆蓋 · 完整取代目前資料</option></select></label><p class="source-note">合併不會自動去除相似想法；覆蓋會移除目前資料。建議先匯出現在的桌面。</p><div class="dialog-actions">${button('先匯出目前備份','export','secondary')}${saveButton('確認匯入')}</div>`,(f,d)=>{const next=f.get('mode')==='merge'?mergeStates(state,incoming):clone(incoming);next.revision=state.revision;state=save(next);loadError='';conflict=false;incoming=null;order=[];query='';d.close();render();toast('備份已還原。');});}
+const actions={
+  home:()=>go('spread'),view:b=>go(b.dataset.id),reload:()=>location.reload(),
+  mute:()=>{commit(s=>s.ui.muted=!s.ui.muted);playTone(state.ui.muted);},settings,export:()=>{download(state);toast('JSON 備份已下載。');},
+  'export-raw':()=>{const blob=new Blob([localStorage.getItem(KEY)||''],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='arcana-recovery.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);},reset:confirmReset,
+  draw:()=>{commit(s=>dealSix(s));document.querySelector('.six-card-spread').classList.add('dealing');playTone(state.ui.muted);toast(activeSession(state).directionsRevealed?'三張素材與方向已重抽。':'素材已重抽，方向牌保持蓋起。');},
+  'toggle-directions':()=>{commit(s=>toggleDirectionRow(s));document.querySelector('.direction-row').classList.add('dealing');playTone(state.ui.muted);toast(activeSession(state).directionsRevealed?'星光亮起，新的方向已揭開。':'方向牌已蓋回。');},
+  'reroll-row':b=>{const row=b.dataset.row;commit(s=>rerollRow(s,row));document.querySelector(`.spread-row[data-row="${row}"] .slots`).classList.add('dealing');playTone(state.ui.muted);toast(row==='gom'?'上排素材已重抽，下排保持不動。':'下排方向已重抽，上排保持不動。');},
+  slot:b=>slotDialog(b.dataset.slot),
+  'swap-slot':b=>{swapSlots(b.dataset.from,b.dataset.to);document.querySelector('#dialog').close();},
+  reroll:b=>{const slot=b.dataset.slot;commit(s=>{const session=activeSession(s),used=Object.values(session.slots),deck=s.decks.find(d=>d.id==='main'),cards=s.cards.filter(c=>!c.deleted&&deck.cardIds.includes(c.id)&&!used.includes(c.id));if(!cards.length)throw Error('需要更多素材牌，才能換一張不同的牌。');const c=cards[Math.floor(Math.random()*cards.length)];event(session,'reroll',{slot,previousCard:clone(session.snapshot[slot]),cardId:c.id});session.slots[slot]=c.id;session.snapshot[slot]=clone(c);});document.querySelector('#dialog').close();playTone(state.ui.muted);},
+  'session-idea':()=>ideaForm(null,{type:'session',id:activeSession(state).id}),
+  'copy-prompt':async()=>{const text=buildGamePrompt(state);if(await copyText(text))return toast('解牌提示已複製，可貼給其他 AI。');modal('複製解牌提示',`${textarea('可直接貼給其他 AI 的題目','prompt',text,'readonly id="prompt-copy-text"')}<p class="microcopy">瀏覽器未允許自動複製。全選後用複製選單或 Ctrl／⌘ + C。</p>${button('全選文字','select-prompt','primary')}`);},
+  'select-prompt':()=>{const input=document.querySelector('#prompt-copy-text');input.focus();input.select();input.setSelectionRange(0,input.value.length);},
+  library,'toggle-card-deck':b=>{const key=b.dataset.id;commit(s=>setCardInDeck(s,key,!s.decks.find(d=>d.id==='main').cardIds.includes(key)));const scroll=document.querySelector('#dialog').scrollTop;library();document.querySelector('#dialog').scrollTop=scroll;document.querySelector('#dialog [data-action=toggle-card-deck][data-id="'+key+'"]')?.focus({preventScroll:true});},'new-card':()=>cardForm(),'edit-card':b=>cardForm(b.dataset.id),
+  'delete-card':b=>{if(state.decks.find(d=>d.id==='main').cardIds.includes(b.dataset.id)&&state.cards.filter(c=>!c.deleted&&state.decks.find(d=>d.id==='main').cardIds.includes(c.id)).length<=3)return toast('抽牌堆至少需要三張素材，請先加入其他牌。');modal('刪除這張素材？','<p>這張牌將離開可抽取的牌堆；已保存的牌局快照仍會保留。</p>'+saveButton('確認刪除'),(_,d)=>{commit(s=>{s.cards.find(c=>c.id===b.dataset.id).deleted=true;s.decks.forEach(deck=>deck.cardIds=deck.cardIds.filter(x=>x!==b.dataset.id));});d.close();toast('素材已移出牌堆，歷史仍保留。');});},
+  'new-idea':()=>ideaForm(),idea:b=>ideaForm(b.dataset.id),
+  forge:b=>{const idea=findIdea(b.dataset.id);cardForm(null,{type:'idea',id:idea.id},idea.text,idea);},
+  'idea-spread':b=>{commit(s=>{const v=activeSession(s);v.ideaId=b.dataset.id;v.question=s.ideas.find(x=>x.id===b.dataset.id).text;event(v,'idea',{ideaId:b.dataset.id});s.ui.activeView='spread';});document.querySelector('#dialog').close();toast('想法已撈起。帶著這個問題來抽牌。');},
+  stir:()=>{const ids=(order.length?order:state.ideas.slice().sort((a,b)=>b.priority-a.priority).map(i=>i.id)).filter(id=>findIdea(id));if(ids.length>1){const offset=1+Math.floor(Math.random()*(ids.length-1));order=ids.slice(offset).concat(ids.slice(0,offset));}render();document.querySelector('.vessel').classList.add('stirring');playTone(state.ui.muted);toast('舊念頭重新浮現。浮力沒有改變。');},
+  'lateral-word':b=>{const slot=b.dataset.slot;commit(s=>drawLateralWord(activeSession(s),slot));document.querySelector(`.crystal-icon[data-slot="${slot}"]`).classList.add('awakening');playTone(state.ui.muted);},
+  'depth-toggle':b=>{commit(s=>toggleDepthShift(activeSession(s),b.dataset.slot));playTone(state.ui.muted);},
+};
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-action]');if(!b)return;e.preventDefault();try{await actions[b.dataset.action]?.(b);}catch(err){toast(err.message);}});
+document.addEventListener('dragstart',e=>{const card=e.target.closest('.material-card.filled');if(card){e.dataTransfer.setData('application/x-arcana-slot',card.dataset.slot);e.dataTransfer.effectAllowed='move';}});
+document.addEventListener('dragover',e=>{if(e.target.closest('.material-card')&&e.dataTransfer.types.includes('application/x-arcana-slot')){e.preventDefault();e.dataTransfer.dropEffect='move';}});
+document.addEventListener('drop',e=>{const card=e.target.closest('.material-card');if(!card)return;const from=e.dataTransfer.getData('application/x-arcana-slot');if(!from)return;e.preventDefault();try{swapSlots(from,card.dataset.slot);}catch(err){toast(err.message);}});
+document.addEventListener('input',e=>{
+  try{
+    if(e.target.id==='session-question')commit(s=>activeSession(s).question=e.target.value,{redraw:false});
+    if(e.target.name==='priority')document.querySelector('#priority-output').textContent=e.target.value+'%';
+    if(e.target.id==='card-search'){const q=e.target.value.toLowerCase();document.querySelectorAll('.library-item').forEach(c=>c.hidden=!c.dataset.search.toLowerCase().includes(q));}
+    if(e.target.id==='idea-search'){query=e.target.value;const fresh=document.createElement('div');fresh.innerHTML=cauldronView(state,order,query);document.querySelector('.idea-list').innerHTML=fresh.querySelector('.idea-list').innerHTML;}
+  }catch(err){toast(err.message);}
+});
+document.addEventListener('change',async e=>{try{if(e.target.id==='idea-sort')commit(s=>s.ui.ideaSort=e.target.value);if(e.target.id==='import-file'){incoming=await readBackup(e.target.files[0]);importConfirm();}}catch(err){toast(err.message);if(e.target.id==='import-file')e.target.value='';}});
+// Form submit handlers are direct callbacks: surface failed storage instead of losing a draft.
+window.addEventListener('error',e=>{if(e.error){console.error(e.error);toast(e.error.message);}});
+window.addEventListener('storage',e=>{if(e.key===KEY&&e.newValue!==JSON.stringify(state)){conflict=true;render();}});
+render();
+if(!loadError){try{state=save(state);}catch(e){toast(e.message);}}
+
+Object.assign(exports,{});
+},
+"card-icons.js":(exports,require)=>{
+const { esc }=require("ui.js");
+const ICON_CATEGORIES={
+  '自然與環境':['🌊','🌱','🌳','🍄','🌋','🏔️','🌙','☀️','🌧️','❄️','🔥','🪨'],
+  '生命與角色':['🧑','👥','👁️','🧠','🦴','🐦','🐟','🦊','🦋','🐚','🥚','🐾'],
+  '物件與場所':['🏙️','🏚️','🚪','🪞','🔑','🔔','🕯️','📦','🧵','🧭','⌛','⚖️'],
+  '動作與機制':['🔨','⚙️','🧲','✂️','🔗','🛡️','💥','🔄','🔀','⚡','🪜','🎲'],
+  '情緒與關係':['❤️','💔','🎭','🤝','💭','❓','❗','👑','🎁','🕊️','🕸️','🫧'],
+  '符號與魔法':['✧','✦','◎','⟁','✳','∞','☯','♟','🔮','🪄','📜','🧿']
+};
+function cardArt(card){return card?.iconImage?`<img class="card-image" src="${esc(card.iconImage)}" alt=""/>`:esc(card?.icon||'✧');}
+function iconPicker(card,label='圖示'){
+  return `<fieldset class="icon-picker"><legend>${esc(label)}</legend><div class="icon-preview-row"><span id="card-icon-preview" class="icon-preview">${cardArt(card)}</span><p>從分類挑一個圖示，或使用自己的圖片。</p></div><label class="field">圖示分類<select id="icon-category">${Object.keys(ICON_CATEGORIES).map(name=>`<option>${name}</option>`).join('')}</select></label><div id="icon-options" class="icon-options" role="group" aria-label="預設圖示">${iconOptions(Object.keys(ICON_CATEGORIES)[0])}</div><details class="custom-icon"><summary>自行輸入符號</summary><label class="field">文字或 Emoji<input name="icon" maxlength="32" required value="${esc(card?.icon||'✧')}"/></label></details><div class="icon-upload-row"><label class="file-button secondary">上傳圖片<input id="card-icon-file" type="file" accept="image/png,image/jpeg,image/webp"/></label><button type="button" class="text-button" id="remove-card-image" ${card?.iconImage?'':'hidden'}>移除上傳圖片</button></div><p class="microcopy" id="icon-feedback" role="status">支援 PNG、JPG、WebP，最多 5 MB。會縮為小圖並隨 JSON 備份保存。</p></fieldset>`;
+}
+function iconOptions(category){return (ICON_CATEGORIES[category]||[]).map(value=>`<button type="button" class="icon-option" data-icon="${esc(value)}" aria-label="使用圖示 ${esc(value)}">${value}</button>`).join('');}
+async function readIconImage(file){
+  if(!file||!['image/png','image/jpeg','image/webp'].includes(file.type))throw Error('請選擇 PNG、JPG 或 WebP 圖片。');
+  if(file.size>5*1024*1024)throw Error('圖片超過 5 MB，請選擇較小的圖片。');
+  const url=URL.createObjectURL(file),image=new Image();
+  try{
+    image.src=url;await image.decode();
+    if(!image.naturalWidth||!image.naturalHeight||image.naturalWidth*image.naturalHeight>40_000_000)throw Error('圖片尺寸過大，請選擇較小的圖片。');
+    const canvas=document.createElement('canvas');canvas.width=128;canvas.height=128;
+    const context=canvas.getContext('2d');if(!context)throw Error('此瀏覽器無法處理圖片。');
+    const scale=Math.min(128/image.naturalWidth,128/image.naturalHeight),w=image.naturalWidth*scale,h=image.naturalHeight*scale;
+    context.drawImage(image,(128-w)/2,(128-h)/2,w,h);
+    const result=canvas.toDataURL('image/png');if(result.length>150000)throw Error('圖片轉換後過大，請選擇較簡單的圖示。');return result;
+  }catch(error){if(error.message.includes('圖片')||error.message.includes('瀏覽器'))throw error;throw Error('無法讀取這張圖片，請換一張有效圖片。');}
+  finally{URL.revokeObjectURL(url);}
+}
+function bindIconPicker(dialog,card,onImageChange){
+  const input=dialog.querySelector('[name=icon]'),preview=dialog.querySelector('#card-icon-preview'),remove=dialog.querySelector('#remove-card-image'),feedback=dialog.querySelector('#icon-feedback'),fileInput=dialog.querySelector('#card-icon-file');
+  let image=card?.iconImage||null,version=0;
+  const refresh=()=>{preview.innerHTML=cardArt({icon:input.value,iconImage:image});remove.hidden=!image;dialog.querySelectorAll('.icon-option').forEach(button=>button.setAttribute('aria-pressed',String(!image&&button.dataset.icon===input.value)));onImageChange(image);};
+  const useSymbol=()=>{version++;image=null;fileInput.value='';feedback.textContent='已選用圖示，保存後套用。';refresh();};
+  dialog.querySelector('#icon-category').onchange=e=>{dialog.querySelector('#icon-options').innerHTML=iconOptions(e.target.value);refresh();};
+  dialog.querySelector('#icon-options').onclick=e=>{const option=e.target.closest('[data-icon]');if(option){input.value=option.dataset.icon;useSymbol();}};
+  input.addEventListener('input',useSymbol);remove.onclick=useSymbol;
+  fileInput.onchange=async()=>{
+    const file=fileInput.files[0];if(!file)return;const request=++version,submit=dialog.querySelector('[type=submit]');submit.disabled=true;feedback.textContent='正在縮小圖片…';
+    try{const result=await readIconImage(file);if(request!==version||!dialog.open)return;image=result;refresh();feedback.textContent='圖片已準備好，保存後套用。';}
+    catch(error){if(request===version){feedback.textContent=error.message;fileInput.value='';}}
+    finally{if(request===version||!fileInput.value)submit.disabled=false;}
+  };
+  dialog.querySelector('#icon-category').value=Object.keys(ICON_CATEGORIES).find(category=>ICON_CATEGORIES[category].includes(input.value))||Object.keys(ICON_CATEGORIES)[0];
+  dialog.querySelector('#icon-options').innerHTML=iconOptions(dialog.querySelector('#icon-category').value);
+  refresh();
+}
+
+Object.assign(exports,{ICON_CATEGORIES,cardArt,iconPicker,iconOptions,readIconImage,bindIconPicker});
+},
+"cauldron.js":(exports,require)=>{
+const { cardArt }=require("card-icons.js");
+const { RECORD_KINDS }=require("data.js");
+const { esc, icon, button, date }=require("ui.js");
+function cauldronView(state,order=[],query=''){
+  const sorted=[...state.ideas].sort((a,b)=>b.priority-a.priority),ideas=order.length?order.map(id=>sorted.find(i=>i.id===id)).filter(Boolean):sorted;
+  const listed=(state.ui.ideaSort==='date'?[...state.ideas].sort((a,b)=>Date.parse(b.createdAt)-Date.parse(a.createdAt)):ideas).filter(idea=>(idea.text+' '+idea.notes).toLowerCase().includes(query.toLowerCase()));
+  return `<section class="panel cauldron-panel ${state.ui.activeView==='cauldron'?'active':''}" data-view="cauldron" aria-label="水槽工作區"><div class="panel-top"><span class="eyebrow">02 / THE CAULDRON</span><span class="tiny-count">${state.ideas.length} 個想法</span></div><h2>讓靈感浮上來</h2><p class="panel-description">留下日期，讓念頭慢慢發酵。</p>
+    <div class="vessel"><div class="vessel-rim"></div><div class="water"><div class="water-glint"></div>${ideas.slice(0,6).map((idea,i)=>`<button class="idea-bubble bubble-${i}" data-action="idea" data-id="${idea.id}" style="--delay:${i*-.7}s;--priority:${idea.priority}" aria-label="想法：${esc(idea.text)}"><span>${cardArt(idea)}</span><small>${esc(idea.text)}</small></button>`).join('')}${!ideas.length?'<p class="water-empty">放下一個念頭<br/>讓它慢慢發酵</p>':''}<i class="particle p1"></i><i class="particle p2"></i><i class="particle p3"></i></div><div class="vessel-foot"></div></div>
+    <div class="vessel-actions">${button(icon('shuffle')+' 攪動水槽','stir','text-button')}${button(icon('plus')+' 一句話','new-idea','secondary')}</div><p class="microcopy">浮力由你決定 · 攪動只暫時換順序</p>
+    <div class="cauldron-tools"><label class="search-field">${icon('search')}<input id="idea-search" type="search" aria-label="搜尋想法與細節" placeholder="尋找曾經的念頭" value="${esc(query)}"/></label><label class="idea-sort-label">排列<select id="idea-sort" aria-label="想法排列方式"><option value="priority" ${state.ui.ideaSort==='priority'?'selected':''}>依浮力</option><option value="date" ${state.ui.ideaSort==='date'?'selected':''}>依日期 · 新到舊</option></select></label></div>
+    <div class="idea-list">${listed.map(idea=>`<button class="idea-row" data-action="idea" data-id="${idea.id}"><span class="list-icon">${cardArt(idea)}</span><span><b>${esc(idea.text)}</b><small class="idea-date"><time datetime="${esc(idea.createdAt)}">${date(idea.createdAt)}</time>${idea.isDraft?' · 未完成草稿':''}</small>${idea.notes?`<span class="idea-preview">${esc(idea.notes.slice(0,80))}</span>`:''}<small>${idea.kind!=='inspiration'?RECORD_KINDS[idea.kind]+' · ':''}${idea.status==='resting'?'休眠中':'醞釀中'} · 浮力 ${Math.round(idea.priority*100)}%</small></span><span class="row-arrow">↗</span></button>`).join('')||'<p class="empty-ideas">暫時沒有這個念頭，換個詞找找。</p>'}</div></section>`;
+}
+
+Object.assign(exports,{cauldronView});
+},
+"data.js":(exports,require)=>{
+const { WORD_BANK }=require("words.js");
+const { defaultCards }=require("materials.js");
+/** @typedef {{type:string,id?:string}} Origin */
+/** @typedef {{id:string,icon:string,text:string,tags:string[],origin:Origin,iconImage?:string,deleted?:boolean}} Card */
+/** @typedef {{id:string,icon:string,text:string,notes:string,priority:number,status:'incubating'|'resting',origin:Origin,createdAt:string,updatedAt:string,iconImage?:string,kind:'inspiration'|'observation'|'review',ideaIds:string[],cardIds:string[],sessionIds:string[],snapshot:Session|null,isDraft?:boolean}} Idea */
+/** @typedef {'G'|'O'|'M'} Slot */
+/** @typedef {{id:string,spreadId:string,slots:Record<Slot,string|null>,snapshot:Record<Slot,Card|null>,directions:Record<Slot,string|null>,directionsRevealed:boolean,randomWords:Record<Slot,string|null>,depthShifts:Record<Slot,'up'|'down'|null>,ideaId:string|null,question:string,status:string,createdAt:string,events:object[]}} Session */
+const ROLES = {G:{name:'目標',en:'GOAL',question:'想達成什麼？',symbol:'◎'},O:{name:'阻礙',en:'OBSTACLE',question:'什麼擋在面前？',symbol:'⟁'},M:{name:'機制',en:'MECHANISM',question:'如何改變局面？',symbol:'✳'}};
+const RECORD_KINDS={inspiration:'靈感 / 設計推測',observation:'實際試玩觀察',review:'RES 回顧'};
+const DEPTH_SHIFTS={up:{name:'上升',icon:'↑',prompt:'放大尺度，提升一層抽象。'},down:{name:'下降',icon:'↓',prompt:'縮小尺度，深入內部結構。'}};
+const DIRECTIONS = {
+  inversion:{name:'逆向',en:'INVERSION',icon:'⇄',prompt:'逆向',detail:'沿著現有極性軸，探索另一端。目標明確 ↔ 迷霧探索；日常小事 ↔ 宏大史詩。阻礙強度與失敗代價，也可以反過來。'},
+  lateral:{name:'側向',en:'LATERAL',icon:'⤴',prompt:'借一個不相干的詞，打開側門。',detail:'點水晶球引入陌生材料。它的形狀、動作或關係，能如何碰撞現在的牌陣？不必急著合理化。'},
+  depth:{name:'深度變換',en:'DEPTH SHIFT',icon:'⊙',prompt:'深度變換',detail:'放大十倍、縮小十倍、升一個抽象層次，或深入內部結構。如果這不是一座城市，而是一個房間呢？'},
+  blank:{name:'空牌',en:'NO CHANGE',icon:'○',prompt:'不做變換，沿用原本解讀。',detail:'保留這一欄原本的目標、阻礙或機制，不施加方向變換。'}
+};
+const WORDS=WORD_BANK;
+const now=()=>new Date().toISOString();
+const id=(prefix)=>`${prefix}-${globalThis.crypto?.randomUUID?.() || `${Date.now().toString(36)}-${Array.from(globalThis.crypto.getRandomValues(new Uint32Array(3)),n=>n.toString(36)).join('')}`}`;
+const clone=(x)=>JSON.parse(JSON.stringify(x));
+function emptySession(){return {id:id('session'),spreadId:'gom',slots:{G:null,O:null,M:null},snapshot:{G:null,O:null,M:null},directions:{G:null,O:null,M:null},directionsRevealed:false,randomWords:{G:null,O:null,M:null},depthShifts:{G:null,O:null,M:null},ideaId:null,question:'',status:'active',createdAt:now(),events:[]};}
+function seed(){
+  const cards=defaultCards();
+  const session=emptySession();
+  const ideas=[{...newIdea('如果城市會像森林一樣生長？',{type:'seed'},'🌱'),id:'idea-seed-1',notes:'建築不只是被建造，也可能需要被照顧。',priority:.8},{...newIdea('把未知留給明天的自己',{type:'seed'},'🕯'),id:'idea-seed-2',notes:'有些問題不需要今天解完。',priority:.35,status:'resting'}];
+  return {schemaVersion:3,catalogVersion:3,revision:0,cards,ideas,decks:[{id:'main',name:'素材牌堆',cardIds:cards.map(c=>c.id)}],spreadTemplates:[{id:'gom',slots:clone(ROLES)}],sessions:[session],orb:{word:null,kept:false,history:[]},ui:{activeView:'spread',activeSessionId:session.id,muted:true,ideaSort:'priority'}};
+}
+function activeSession(s){return s.sessions.find(x=>x.id===s.ui.activeSessionId);}
+function event(session,type,detail={}){session.events.push({type,at:now(),...detail});}
+function newIdea(text,origin={type:'manual'},icon='✦'){return {id:id('idea'),icon,text:text.trim(),notes:'',priority:.6,status:'incubating',origin,createdAt:now(),updatedAt:now(),kind:'inspiration',ideaIds:[],cardIds:[],sessionIds:[],snapshot:null};}
+function setCardInDeck(state,cardId,enabled){
+  const card=state.cards.find(card=>card.id===cardId),deck=state.decks.find(deck=>deck.id==='main');
+  if(!card||card.deleted||!deck)throw Error('找不到可使用的素材牌。');
+  const included=deck.cardIds.includes(cardId);
+  if(!enabled&&included&&state.cards.filter(card=>!card.deleted&&deck.cardIds.includes(card.id)).length<=3)throw Error('抽牌堆至少需要三張素材，請先加入其他牌。');
+  if(enabled&&!included)deck.cardIds.push(cardId);
+  if(!enabled)deck.cardIds=deck.cardIds.filter(id=>id!==cardId);
+}
+function drawDirection(current=null,random=Math.random){
+  const choices=Object.keys(DIRECTIONS).filter(key=>key!==current);
+  return choices[Math.floor(random()*choices.length)];
+}
+function drawIds(cards,old=[],count=3,random=Math.random){
+  if(cards.length<count)throw Error(`至少需要 ${count} 張素材牌。`);
+  const pool=[...cards];for(let i=pool.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+  const result=pool.slice(0,count).map(x=>x.id);
+  if(result.every((v,i)=>v===old[i]))[result[0],result[1]]=[result[1],result[0]];
+  return result;
+}
+function dealSix(state,random=Math.random){
+  const old=activeSession(state),deck=state.decks.find(d=>d.id==='main');
+  const cards=state.cards.filter(c=>deck.cardIds.includes(c.id)&&!c.deleted);
+  const cardIds=drawIds(cards,Object.values(old.slots),3,random);
+  const next=emptySession();
+  Object.assign(next,{ideaId:old.ideaId,question:old.question});
+  Object.keys(ROLES).forEach((slot,i)=>{next.slots[slot]=cardIds[i];next.snapshot[slot]=clone(cards.find(c=>c.id===cardIds[i]));next.directions[slot]=drawDirection(old.directions[slot],random);});
+  next.directionsRevealed=old.directionsRevealed;
+  event(next,'draw',{cardIds,directions:clone(next.directions)});
+  Object.keys(ROLES).forEach(slot=>{if(next.directions[slot]==='lateral')drawLateralWord(next,slot,random);if(next.directions[slot]==='depth'){next.depthShifts[slot]=random()<.5?'up':'down';event(next,'depth-shift',{slot,shift:next.depthShifts[slot]});}});
+  old.status='archived';state.sessions.push(next);state.ui.activeSessionId=next.id;
+  return next;
+}
+function rerollDirection(session,slot,random=Math.random){
+  if(!Object.hasOwn(ROLES,slot))throw Error('未知的方向牌位。');
+  const previousDirection=session.directions[slot],previousWord=session.randomWords[slot],previousDepth=session.depthShifts[slot];
+  session.directions[slot]=drawDirection(previousDirection,random);session.randomWords[slot]=null;session.depthShifts[slot]=null;
+  event(session,'direction-reroll',{slot,previousDirection,previousWord,previousDepth,direction:session.directions[slot]});
+  if(session.directions[slot]==='lateral')drawLateralWord(session,slot,random);
+  if(session.directions[slot]==='depth'){session.depthShifts[slot]=random()<.5?'up':'down';event(session,'depth-shift',{slot,shift:session.depthShifts[slot]});}
+}
+function toggleDepthShift(session,slot){
+  if(!Object.hasOwn(ROLES,slot)||session.directions[slot]!=='depth')throw Error('請點深度變換牌上的方向箭頭。');
+  session.depthShifts[slot]=session.depthShifts[slot]==='up'?'down':'up';event(session,'depth-shift',{slot,shift:session.depthShifts[slot]});
+}
+function drawLateralWord(session,slot,random=Math.random){
+  if(!Object.hasOwn(ROLES,slot)||session.directions[slot]!=='lateral')throw Error('請點側向牌上的水晶球。');
+  const pool=WORDS.filter(word=>word!==session.randomWords[slot]);
+  session.randomWords[slot]=pool[Math.floor(random()*pool.length)];
+  event(session,'word',{slot,word:session.randomWords[slot]});
+}
+function rerollRow(state,row,random=Math.random){
+  if(!['gom','directions'].includes(row))throw Error('未知的牌列。');
+  const session=activeSession(state);
+  if(row==='gom'){
+    const deck=state.decks.find(d=>d.id==='main'),cards=state.cards.filter(c=>deck.cardIds.includes(c.id)&&!c.deleted);
+    const cardIds=drawIds(cards,Object.values(session.slots),3,random),previousSnapshot=clone(session.snapshot);
+    Object.keys(ROLES).forEach((slot,i)=>{session.slots[slot]=cardIds[i];session.snapshot[slot]=clone(cards.find(c=>c.id===cardIds[i]));});
+    event(session,'row-reroll',{row,cardIds,previousSnapshot});
+  }else{
+    Object.keys(ROLES).forEach(slot=>rerollDirection(session,slot,random));
+    event(session,'row-reroll',{row,directions:clone(session.directions)});
+  }
+}
+function toggleDirectionRow(state,random=Math.random){
+  const session=activeSession(state),revealed=!session.directionsRevealed;
+  if(revealed)rerollRow(state,'directions',random);
+  session.directionsRevealed=revealed;
+  event(session,'direction-visibility',{revealed});
+}
+const assert=(ok,path)=>{if(!ok)throw Error(`備份格式不正確：${path}`);};
+/** Schema 1's shared direction applies to every role; schema 2 stores each role independently. */
+function migrate(raw){
+  assert(raw&&typeof raw==='object'&&!Array.isArray(raw),'根物件');
+  assert([1,2,3].includes(raw.schemaVersion),'不支援的 schemaVersion（支援 1、2、3）');
+  if(raw.schemaVersion===1){
+    const upgrade=session=>{if(!session||typeof session!=='object')return;session.directions={G:session.direction,O:session.direction,M:session.direction};session.randomWords={G:session.randomWord,O:session.randomWord,M:session.randomWord};delete session.direction;delete session.randomWord;};
+    if(Array.isArray(raw.sessions))raw.sessions.forEach(upgrade);
+    if(Array.isArray(raw.journal))raw.journal.forEach(entry=>upgrade(entry?.snapshot));
+    upgrade(raw.ui?.journalDraft?.session);raw.schemaVersion=2;
+  }
+  if(raw.schemaVersion===2){
+    assert(Array.isArray(raw.ideas)&&Array.isArray(raw.journal),'舊版 ideas / journal');
+    const journalIds=new Map(raw.journal.map(entry=>[entry.id,id('idea')]));
+    raw.ideas.forEach(idea=>{idea.kind??='inspiration';idea.ideaIds??=[];idea.cardIds??=[];idea.sessionIds??=[];idea.snapshot??=null;});
+    for(const entry of raw.journal){
+      assert(typeof entry.title==='string'&&typeof entry.text==='string','舊紀錄標題與文字');
+      const idea=newIdea(entry.title.trim()||'未命名紀錄',{type:'legacy-journal',journalId:entry.id},'📜');
+      Object.assign(idea,{id:journalIds.get(entry.id),notes:entry.text,kind:entry.kind,createdAt:entry.createdAt,updatedAt:entry.createdAt,priority:.5,status:'resting',ideaIds:clone(entry.ideaIds),cardIds:clone(entry.cardIds),sessionIds:clone(entry.sessionIds),snapshot:clone(entry.snapshot)});
+      raw.ideas.push(idea);
+    }
+    const draft=raw.ui?.journalDraft;
+    if(draft){
+      assert(typeof draft.title==='string'&&typeof draft.text==='string','舊草稿標題與文字');
+      const snapshot=clone(draft.session),idea=newIdea(draft.title.trim()||'未完成的想法',{type:'legacy-draft'},'✎');
+      Object.assign(idea,{notes:draft.text,kind:draft.kind,isDraft:true,priority:.5,status:'resting',ideaIds:clone(draft.ideaIds),cardIds:snapshot?Object.values(snapshot.slots).filter(Boolean):[],sessionIds:snapshot?[snapshot.id]:[],snapshot});raw.ideas.push(idea);
+      delete raw.ui.journalDraft;
+    }
+    for(const entity of [...raw.ideas,...(raw.cards||[])])if(entity.origin?.type==='journal'){
+      assert(journalIds.has(entity.origin.id),'舊日誌來源遺失');entity.origin={...entity.origin,type:'idea',legacyJournalId:entity.origin.id,id:journalIds.get(entity.origin.id)};
+    }
+    delete raw.journal;raw.schemaVersion=3;
+  }
+  if(raw.ui?.activeView==='journal')raw.ui.activeView='cauldron';
+  if(raw.ui?.activeView==='orb')raw.ui.activeView='spread';
+  if(raw.ui&&typeof raw.ui==='object')raw.ui.ideaSort??='priority';
+  const depthDefaults=session=>{if(session&&typeof session==='object'){session.depthShifts??={G:null,O:null,M:null};session.directionsRevealed??=false;}};
+  if(Array.isArray(raw.sessions))raw.sessions.forEach(depthDefaults);
+  if(Array.isArray(raw.ideas))raw.ideas.forEach(idea=>depthDefaults(idea?.snapshot));
+  if(raw.catalogVersion===undefined||raw.catalogVersion===1||raw.catalogVersion===2){
+    const deck=Array.isArray(raw.decks)?raw.decks.find(deck=>deck.id==='main'):null;
+    if(Array.isArray(raw.cards)&&deck&&Array.isArray(deck.cardIds)){
+      const existing=new Set(raw.cards.map(card=>card.id));
+      for(const card of defaultCards().slice(raw.catalogVersion===2?52:18))if(!existing.has(card.id)){raw.cards.push(card);deck.cardIds.push(card.id);}
+      raw.catalogVersion=3;
+    }
+  }
+  return raw;
+}
+function validate(raw){
+  const s=migrate(clone(raw));
+  const str=(v,p,max=20000)=>assert(typeof v==='string'&&v.length<=max,p);
+  const list=(v,p)=>assert(Array.isArray(v)&&v.length<=20000,p);
+  const origin=(v,p)=>{assert(v&&typeof v==='object',p);str(v.type,p+'.type',80);if(v.id!==undefined)str(v.id,p+'.id',150);};
+  const timestamp=(v,p)=>assert(typeof v==='string'&&Number.isFinite(Date.parse(v)),p);
+  const unique=(rows,p)=>{list(rows,p);const ids=new Set();rows.forEach(v=>{assert(v&&typeof v==='object',p);str(v.id,p+'.id',150);assert(/^[a-zA-Z0-9_-]+$/.test(v.id)&&!ids.has(v.id),p+' ID 無效或重複');ids.add(v.id);});return ids;};
+  const imageIcon=(v,p)=>{if(v.iconImage!==undefined){str(v.iconImage,p+'.iconImage',150000);assert(/^data:image\/png;base64,iVBORw0KGgo[A-Za-z0-9+/]*={0,2}$/.test(v.iconImage),p+'.iconImage 只接受內嵌 PNG');}};
+  const card=(v,p)=>{str(v.text,p+'.text',240);assert(v.text.trim(),p+'.text 空白');str(v.icon,p+'.icon',32);imageIcon(v,p);list(v.tags,p+'.tags');v.tags.forEach(t=>str(t,p+'.tag',80));origin(v.origin,p+'.origin');if(v.deleted!==undefined)assert(typeof v.deleted==='boolean',p+'.deleted');};
+  assert(s.catalogVersion===3,'catalogVersion');
+  const cs=unique(s.cards,'cards');s.cards.forEach(c=>card(c,'card'));
+  const is=unique(s.ideas,'ideas');s.ideas.forEach(v=>{str(v.text,'idea.text',240);assert(v.text.trim(),'idea.text 空白');str(v.icon,'idea.icon',32);imageIcon(v,'idea');str(v.notes,'idea.notes');assert(Number.isFinite(v.priority)&&v.priority>=0&&v.priority<=1,'priority 0–1');assert(['incubating','resting'].includes(v.status),'idea.status');origin(v.origin,'idea.origin');timestamp(v.createdAt,'idea.createdAt');timestamp(v.updatedAt,'idea.updatedAt');});
+  unique(s.decks,'decks');s.decks.forEach(d=>{str(d.name,'deck.name',120);list(d.cardIds,'deck.cardIds');assert(new Set(d.cardIds).size===d.cardIds.length,'deck 重複 cardId');d.cardIds.forEach(v=>assert(cs.has(v),'deck 卡片遺失'));});assert(s.decks.some(d=>d.id==='main'),'main deck 遺失');
+  unique(s.spreadTemplates,'spreadTemplates');assert(s.spreadTemplates.some(t=>t.id==='gom'),'GOM 模板遺失');
+  const checkSession=(v)=>{assert(v&&v.spreadId==='gom','session.spreadId');assert(v.directions&&v.randomWords,'session.directions / randomWords');assert(typeof v.directionsRevealed==='boolean','session.directionsRevealed');for(const slot of Object.keys(ROLES)){assert(v.slots&&v.snapshot,'session.slots / snapshot');assert(v.slots[slot]===null||cs.has(v.slots[slot]),'session 卡片遺失');const c=v.snapshot[slot];if(v.slots[slot]!==null){assert(c&&c.id===v.slots[slot],'session.snapshot');card(c,'snapshot');}else assert(c===null,'snapshot 空牌位');assert(v.directions[slot]===null||Object.hasOwn(DIRECTIONS,v.directions[slot]),slot+' direction');assert(v.randomWords[slot]===null||typeof v.randomWords[slot]==='string'&&v.randomWords[slot].length<=240,slot+' randomWord');}assert(v.ideaId===null||is.has(v.ideaId),'session idea 遺失');str(v.question,'question',4000);str(v.status,'session.status',80);timestamp(v.createdAt,'session.createdAt');list(v.events,'session.events');v.events.forEach(e=>{assert(e&&typeof e==='object','event');str(e.type,'event.type',80);timestamp(e.at,'event.at');});};
+  const ss=unique(s.sessions,'sessions');s.sessions.forEach(checkSession);
+  const checkDepth=session=>{assert(session.depthShifts&&typeof session.depthShifts==='object','session.depthShifts');for(const slot of Object.keys(ROLES))assert(session.depthShifts[slot]===null||Object.hasOwn(DEPTH_SHIFTS,session.depthShifts[slot]),slot+' depth shift');};
+  s.sessions.forEach(checkDepth);s.ideas.filter(idea=>idea.snapshot).forEach(idea=>checkDepth(idea.snapshot));
+  assert(!Object.hasOwn(s,'journal'),'Schema 3 的紀錄應儲存在水槽');
+  s.ideas.forEach(v=>{assert(Object.hasOwn(RECORD_KINDS,v.kind),'idea.kind');if(v.isDraft!==undefined)assert(typeof v.isDraft==='boolean','idea.isDraft');for(const [field,ids] of [['ideaIds',is],['cardIds',cs],['sessionIds',ss]]){list(v[field],field);v[field].forEach(ref=>assert(ids.has(ref),`idea ${field} 遺失`));}if(v.snapshot!==null){checkSession(v.snapshot);assert(ss.has(v.snapshot.id),'idea snapshot session 遺失');}});
+  assert(s.ui&&['spread','cauldron'].includes(s.ui.activeView),'ui.activeView');assert(ss.has(s.ui.activeSessionId),'activeSessionId');assert(typeof s.ui.muted==='boolean','ui.muted');assert(['priority','date'].includes(s.ui.ideaSort),'ui.ideaSort');
+  assert(s.orb&&typeof s.orb.kept==='boolean','orb');assert(s.orb.word===null||typeof s.orb.word==='string'&&s.orb.word.length<=240,'orb.word');list(s.orb.history,'orb.history');s.orb.history.forEach(v=>{str(v.word,'orb history word',240);timestamp(v.at,'orb history at');});s.orb.savedWords??=[];list(s.orb.savedWords,'orb.savedWords');s.orb.savedWords.forEach(w=>str(w,'orb.savedWord',240));
+  assert(Number.isSafeInteger(s.revision)&&s.revision>=0,'revision');
+  const allIds=[...s.cards,...s.ideas,...s.sessions,...s.decks].map(v=>v.id);assert(new Set(allIds).size===allIds.length,'跨類型 ID 重複');
+  const known={idea:is,card:cs,session:ss};
+  [...s.cards,...s.ideas].forEach(v=>{if(v.origin.id&&known[v.origin.type])assert(known[v.origin.type].has(v.origin.id),'origin 來源遺失');});
+  return s;
+}
+/** Merge preserves both histories by remapping every imported entity ID, including collisions. */
+function mergeStates(current,incoming){
+  const a=validate(current),b=validate(incoming),map=new Map();
+  for(const field of ['ideas','cards','decks','sessions'])for(const v of b[field])map.set(v.id,id(field.slice(0,-1)));
+  const ref=(x)=>map.get(x)||x;
+  const remapOrigin=(v)=>{if(v.origin?.id)v.origin.id=ref(v.origin.id);};
+  const remapCard=v=>{v.id=ref(v.id);remapOrigin(v);};
+  const remapSession=(v)=>{v.id=ref(v.id);v.ideaId=v.ideaId?ref(v.ideaId):null;for(const k of Object.keys(ROLES)){if(v.slots[k])v.slots[k]=ref(v.slots[k]);if(v.snapshot[k])remapCard(v.snapshot[k]);}v.events=v.events.map(e=>{const next={...e};if(next.cardId)next.cardId=ref(next.cardId);if(next.ideaId)next.ideaId=ref(next.ideaId);if(Array.isArray(next.cardIds))next.cardIds=next.cardIds.map(ref);if(next.previousCard)remapCard(next.previousCard);if(next.previousSnapshot)Object.values(next.previousSnapshot).filter(Boolean).forEach(remapCard);return next;});};
+  b.cards.forEach(remapCard);b.sessions.forEach(remapSession);
+  b.ideas.forEach(v=>{v.id=ref(v.id);remapOrigin(v);v.ideaIds=v.ideaIds.map(ref);v.cardIds=v.cardIds.map(ref);v.sessionIds=v.sessionIds.map(ref);if(v.snapshot)remapSession(v.snapshot);});
+  for(const field of ['ideas','cards','sessions'])a[field].push(...b[field]);
+  const main=a.decks.find(d=>d.id==='main');for(const d of b.decks){const ids=d.cardIds.map(ref);main.cardIds.push(...ids.filter(x=>!main.cardIds.includes(x)));}
+  a.orb.history.push(...b.orb.history);a.orb.savedWords=[...new Set([...(a.orb.savedWords||[]),...b.orb.savedWords])];return validate(a);
+}
+
+Object.assign(exports,{ROLES,RECORD_KINDS,DEPTH_SHIFTS,DIRECTIONS,WORDS,now,id,clone,emptySession,seed,activeSession,event,newIdea,setCardInDeck,drawDirection,drawIds,dealSix,rerollDirection,toggleDepthShift,drawLateralWord,rerollRow,toggleDirectionRow,migrate,validate,mergeStates});
+},
+"direction.js":(exports,require)=>{
+const { DEPTH_SHIFTS, DIRECTIONS }=require("data.js");
+function depthOcean(){
+  return `<span class="depth-ocean" role="img" aria-label="海洋切面"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M5 17Q12 10 19 17T33 17T47 17T59 17V55H5Z" fill="#5e928a" stroke="#5f7061" stroke-width="2"/><path d="M6 29Q19 24 32 30T58 30V55H6Z" fill="#396d70"/><path d="M6 41Q20 36 33 42T58 41V55H6Z" fill="#25474e"/><path d="M6 53L19 48L32 52L45 46L58 50V56H6Z" fill="#b5a575"/><path d="M13 23L13 35M22 23L22 29M45 24L45 35" stroke="#cee2c5" stroke-width="1.5" stroke-linecap="round" opacity=".65"/></svg></span>`;
+}
+function depthControl(slot,shift){
+  const value=DEPTH_SHIFTS[shift];
+  return `<button type="button" class="depth-control" data-action="depth-toggle" data-slot="${slot}" aria-label="切換 ${slot} 深度變換方向：${value?value.name:'尚未選擇'}"><span class="depth-disc"><span class="depth-arrow" aria-hidden="true">${value?value.icon:'↕'}</span></span></button>`;
+}
+function directionPrompt(session,slot){
+  const direction=session.directions[slot];
+  if(direction==='depth')return '深度變換';
+  return direction?DIRECTIONS[direction].prompt:'換個方向，看看還有什麼可能？';
+}
+
+Object.assign(exports,{depthOcean,depthControl,directionPrompt});
+},
+"materials.js":(exports,require)=>{
+// Stable IDs preserve edits, exclusions and historical references as the catalog grows.
+const MATERIALS=[
+  ['🏙','保護一座城市','world'],
+  ['🚪','居民拒絕離開','people'],
+  ['🔨','拆除一棟建築','action'],
+  ['🌱','讓荒地重新生長','nature'],
+  ['🕯','維持最後一盞燈','object'],
+  ['🌊','潮水逐漸升高','nature'],
+  ['🧵','連起兩個陌生人','action'],
+  ['🪞','交換彼此的位置','action'],
+  ['🗝','打開一扇未知的門','object'],
+  ['🪶','讓沉重之物浮起','action'],
+  ['🌘','只有夜晚看得見','world'],
+  ['🎭','每個人隱藏一個秘密','people'],
+  ['⚖','付出另一種代價','action'],
+  ['🌿','根系共享記憶','nature'],
+  ['⌛','借用明天的時間','action'],
+  ['🔔','聲音改變道路','action'],
+  ['🪺','保護尚未孵化的東西','object'],
+  ['🧱','橋梁只能使用一次','world'],
+  ['🧭','路標每天指向不同地方','world'],
+  ['🌫️','道路藏在濃霧裡','world'],
+  ['❄️','停下時世界開始結冰','nature'],
+  ['🔥','火焰只燃燒記憶','nature'],
+  ['🪨','石頭記得被放置的位置','object'],
+  ['🌳','一棵樹連著兩個世界','nature'],
+  ['🍄','孢子傳遞陌生人的夢','nature'],
+  ['🐦','跟隨候鳥尋找失落的家','nature'],
+  ['🐟','魚群帶走發出的聲音','nature'],
+  ['🥚','孵化一個無人理解的生命','people'],
+  ['👥','只有合作才能看見全貌','people'],
+  ['🎭','說出真話會改變外貌','people'],
+  ['👁️','被注視的東西無法移動','action'],
+  ['🫧','每次呼吸都產生一個分身','action'],
+  ['❤️','把傷害轉移給珍惜之物','relation'],
+  ['🤝','敵人需要你的幫助','people'],
+  ['🕸️','每個選擇都牽動遠方','relation'],
+  ['🎁','禮物必須被轉送出去','relation'],
+  ['🏚️','空屋裡住著未來的自己','world'],
+  ['🏔️','越接近山頂身體越小','world'],
+  ['🌀','出口總是回到起點','world'],
+  ['🏮','光照到哪裡地面才存在','world'],
+  ['🪜','用影子搭建道路','action'],
+  ['🧲','讓相同的東西互相排斥','action'],
+  ['✂️','剪掉一段因果','action'],
+  ['🪡','把破碎的空間縫合','action'],
+  ['🔄','交換兩件事發生的順序','action'],
+  ['🔒','鎖住一個正在發生的瞬間','action'],
+  ['🪞','從倒影走進另一個房間','action'],
+  ['⚡','用移動儲存能量','action'],
+  ['🧂','資源越分享越多','relation'],
+  ['📜','規則可以被擦去','object'],
+  ['🎲','每次重複都少一條規則','action'],
+  ['🕊️','不擊敗對手也能離開','action'],
+  ['🧊','把聲音凍結成可搬動的形狀','action'],
+  ['🪁','借風牽動遠處的物件','action'],
+  ['🧩','缺少的部分反而打開通路','object'],
+  ['🪆','每個容器裡都有更小的世界','object'],
+  ['🗺️','畫出的地圖成為真實地形','object'],
+  ['📮','寄一封信給過去的自己','action'],
+  ['🧶','沿著線索拆開一個地方','action'],
+  ['🎶','讓不同節奏暫時同步','action'],
+  ['🪃','送走的東西會帶回別的東西','action'],
+  ['🪞','只有看不見時才會改變','world'],
+  ['🪑','空位決定誰能出現','object'],
+  ['🧺','容器只能裝下彼此矛盾的東西','object'],
+  ['🚂','移動的家無法停靠兩次','world'],
+  ['🏜️','水源會避開追逐它的人','nature'],
+  ['🌸','季節由居民共同決定','nature'],
+  ['🍂','失去的東西化成新的路','nature'],
+  ['🦀','只能側著走過的邊界','nature'],
+  ['🐌','慢下來才看得見入口','nature'],
+  ['🐙','同時照顧互相牽制的事物','people'],
+  ['🦉','知道答案的人無法直接說明','people'],
+  ['🧑‍🤝‍🧑','兩個角色共享同一個影子','relation'],
+  ['🤫','共同保守的秘密維持一座橋','relation'],
+  ['🪢','解開一段關係會綁住另一段','relation'],
+  ['💌','信任需要交出重要的東西','relation'],
+  ['🛎️','召喚幫助也會引來未知訪客','action'],
+  ['🌅','讓一個未完成的循環重新開始','world']
+];
+function defaultCards(){return MATERIALS.map(([icon,text,tag],index)=>({id:`card-seed-${index+1}`,icon,text,tags:[tag],origin:{type:'seed'}}));}
+
+Object.assign(exports,{MATERIALS,defaultCards});
+},
+"orb.js":(exports,require)=>{
+const { esc }=require("ui.js");
+function lateralOrb(slot,word){
+  return `<button type="button" class="crystal-icon" data-action="lateral-word" data-slot="${slot}" aria-label="點 ${slot} 側向牌上的水晶球換一個字"><span class="mini-orb"><span class="crystal-word ${word?'has-word':''}" role="status" aria-live="polite">${word?esc(word):'✧'}</span></span></button>`;
+}
+
+Object.assign(exports,{lateralOrb});
+},
+"prompt.js":(exports,require)=>{
+const { ROLES, DIRECTIONS, DEPTH_SHIFTS, activeSession }=require("data.js");
+function buildGamePrompt(state){
+  const session=activeSession(state);
+  if(!session||!Object.keys(ROLES).every(slot=>session.snapshot[slot]&&(!session.directionsRevealed||session.directions[slot])))throw Error('先抽出完整的六張牌，再複製解牌提示。');
+  const lines=[
+    '你是一位遊戲設計師。請根據以下 GOM 素材與各欄方向，提出 3 個可製作小型原型的遊戲提案。',
+    '素材可以被重新詮釋；方向牌是各欄的思考方式。每項 AI 提案都只是候選，由創作者決定是否採用。',
+    '',
+    session.question?'本次問題：'+session.question:'本次問題：留白，請自由探索。',
+    '',
+    '【本次牌陣】'
+  ];
+  for(const [slot,role] of Object.entries(ROLES)){
+    const card=session.snapshot[slot],direction=DIRECTIONS[session.directions[slot]];
+    lines.push(`${slot}｜${role.name}（${role.question}）：${card.icon} ${card.text}`);
+    if(!session.directionsRevealed){lines.push('  方向牌蓋起：僅使用本欄素材，不施加方向變換。','');continue;}
+    lines.push(`  ${slot} 的方向：${direction.name}。${direction.detail}`);
+    if(session.directions[slot]==='lateral')lines.push(`  ${slot} 的晶球詞：${session.randomWords[slot]||'尚未抽詞'}。請嘗試跨領域的關係碰撞。`);
+    if(session.directions[slot]==='depth'){const shift=DEPTH_SHIFTS[session.depthShifts[slot]];lines.push(`  ${slot} 的深度方向：${shift?shift.name+'。'+shift.prompt:'尚未選擇，請探索上升與下降的可能。'}`);}
+    lines.push('');
+  }
+  lines.push(
+    '【解牌與提案要求】',
+    '1. 每個提案用一句話說明玩家在做什麼，以及最有意思的問題。',
+    '2. 解釋 G、O、M 如何結合，以及各欄方向如何影響解讀；空牌保持該欄原意。',
+    '3. 給出一段 30–60 秒的具體遊玩流程：起始局面 → 玩家操作 → 可見結果 → 下一個選擇。',
+    '4. 列出可立即做灰盒的最小規則、2–3 個核心動詞與一個小場景。',
+    '5. 指出一個需要實際試玩的問題，清楚區分設計推測與已觀察的事實。',
+    '讓三個提案有不同的遊玩關係，不只更換故事包裝。'
+  );
+  return lines.join('\n');
+}
+
+Object.assign(exports,{buildGamePrompt});
+},
+"spread.js":(exports,require)=>{
+const { ROLES, DIRECTIONS, activeSession }=require("data.js");
+const { esc, icon, button }=require("ui.js");
+const { cardArt }=require("card-icons.js");
+const { lateralOrb }=require("orb.js");
+const { depthOcean, depthControl, directionPrompt }=require("direction.js");
+function spreadView(state){
+  const s=activeSession(state),n=state.decks.find(d=>d.id==='main').cardIds.filter(x=>!state.cards.find(c=>c.id===x)?.deleted).length;
+  return `<section class="panel spread-panel ${state.ui.activeView==='spread'?'active':''}" data-view="spread" aria-label="牌陣工作區">
+    <div class="panel-top"><span class="eyebrow">01 / THE SPREAD</span>${button('素材牌庫 <span>'+n+'</span>','library','text-button')}</div>
+    <div class="spread-heading"><div><h2>GOM × 方向牌</h2><p>每個目標、阻礙與機制，都能換個方向想。</p></div><span class="small-seal" aria-hidden="true">☉</span></div>
+    <label class="question-line"><span>此刻的問題</span><input id="session-question" value="${esc(s.question)}" placeholder="可以先留白，也可以帶著一個問題…" maxlength="4000" aria-label="此刻的問題"/></label>
+    ${s.ideaId?`<div class="context-chip">從水槽撈起 · ${esc(state.ideas.find(i=>i.id===s.ideaId)?.text)}</div>`:''}
+    <div class="ritual-circle" aria-hidden="true"><span>✧</span></div>
+    <div class="six-card-spread" data-session="${s.id}"><div class="spread-row" data-row="gom">${button('✦','reroll-row','row-star','data-row="gom" aria-label="重抽上排 GOM 素材牌" title="重抽 GOM 這一排"')}<div class="slots gom-slots">${Object.entries(ROLES).map(([role,r],i)=>{const c=s.snapshot[role];return `<div class="slot-wrap"><div class="slot-label"><b>${role}</b><span>${r.name}</span><small>${r.en}</small></div><button class="material-card ${c?'filled':'empty'}" data-action="${c?'slot':'draw'}" data-slot="${role}" style="--i:${i}" aria-label="${role} ${r.name}${c?'：'+esc(c.text):'空牌位，點擊抽六張牌'}"><span class="card-corner top">✧</span><span class="card-symbol">${c?cardArt(c):r.symbol}</span><span class="card-text">${c?esc(c.text):r.question}</span><span class="card-foot">${c?'點擊解讀 · 單獨重抽':'等待一張素材'}</span><span class="card-corner bottom">✧</span></button></div>`;}).join('')}</div></div>
+    <div class="spread-row" data-row="directions">${button('✦','toggle-directions','row-star direction-star '+(s.directionsRevealed?'is-lit':''),`data-row="directions" aria-label="${s.directionsRevealed?'蓋回下排方向牌':'抽出並揭開下排方向牌'}" aria-pressed="${s.directionsRevealed}" aria-expanded="${s.directionsRevealed}" aria-controls="direction-cards" title="${s.directionsRevealed?'熄滅星星，蓋回方向牌':'點亮星星，抽取新方向'}"`)}<div id="direction-cards" class="slots direction-row">${Object.entries(ROLES).map(([role,r],i)=>{
+      if(!s.directionsRevealed)return `<div class="slot-wrap direction-slot"><div class="slot-label"><b>${role}</b><span>方向</span></div><div class="material-card direction-card face-down" data-role="${role}" role="group" aria-label="${role} ${r.name}的方向牌已蓋起"><span class="card-corner top" aria-hidden="true">✧</span><span class="direction-back-seal" aria-hidden="true">✦</span><span class="card-text">方向牌</span><span class="card-foot">點亮星星揭開</span><span class="card-corner bottom" aria-hidden="true">✧</span></div></div>`;
+      const key=s.directions[role],direction=key?DIRECTIONS[key]:null;return `<div class="slot-wrap direction-slot"><div class="slot-label"><b>${role}</b><span>${direction?direction.name:'方向'}</span></div><div class="material-card direction-card ${direction?'filled':'empty'}" data-role="${role}" data-direction="${key||''}" style="--i:${i+3}" role="group" aria-label="${role} ${r.name}的方向牌${direction?'：'+direction.name:''}"><span class="card-corner top">✧</span><div class="card-icons">${key==='depth'?depthOcean():`<span class="card-symbol" aria-hidden="true">${direction?direction.icon:'✧'}</span>`}${key==='lateral'?lateralOrb(role,s.randomWords[role]):key==='depth'?depthControl(role,s.depthShifts[role]):''}</div><span class="card-text"><span class="direction-prompt" aria-live="polite">${directionPrompt(s,role)}</span></span><span class="card-foot">${direction?direction.en:'對應 '+role+' 的方向'}</span><span class="card-corner bottom">✧</span></div></div>`;
+    }).join('')}</div></div></div>
+    <div class="draw-row"><button class="deck-object" data-action="draw" aria-label="牌堆，抽六張牌"><span>✧</span></button><div>${button(icon('shuffle')+' 抽六張牌','draw','primary')}<small>三張素材 ＋ 各自對應的三張方向牌</small></div></div>
+    <div class="spread-actions">${button(icon('cauldron')+' 留成想法球','session-idea')}${button('複製解牌提示','copy-prompt','secondary',Object.keys(ROLES).every(slot=>s.slots[slot]&&(!s.directionsRevealed||s.directions[slot]))?'':'disabled title="先抽出完整的六張牌"')}</div>
+    <p class="closing-note">牌沒有固定角色。讓同一張素材，在不同位置說不同的故事。</p>
+  </section>`.replaceAll('class="material-card filled"','class="material-card filled" draggable="true"');
+}
+
+Object.assign(exports,{spreadView});
+},
+"storage.js":(exports,require)=>{
+const { seed, validate, clone }=require("data.js");
+const KEY='arcana.idea-alchemy.v1';
+function load(){
+  const raw=localStorage.getItem(KEY);
+  if(raw===null)return seed();
+  try{return validate(JSON.parse(raw));}catch(e){throw Error(`本機資料無法讀取，原始資料仍保留。${e.message}`);}
+}
+function save(state){
+  const next=clone(state);next.revision++;
+  const json=JSON.stringify(validate(next));
+  try{localStorage.setItem(KEY,json);}catch{throw Error('裝置未允許儲存或空間不足。變更尚未儲存，請先匯出備份。');}
+  return next;
+}
+function download(state){
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`arcana-${new Date().toISOString().slice(0,10)}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+async function readBackup(file){
+  if(!file)throw Error('請選取 JSON 檔案。');if(file.size>10*1024*1024)throw Error('檔案超過 10 MB。請選擇 Arcana JSON 備份。');
+  let data;try{data=JSON.parse(await file.text());}catch{throw Error('不是有效的 JSON；目前資料未變更。');}return validate(data);
+}
+
+Object.assign(exports,{KEY,load,save,download,readBackup});
+},
+"ui.js":(exports,require)=>{
+const esc=(v='')=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const date=(v)=>new Intl.DateTimeFormat('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(v));
+function icon(name,cls=''){
+  const paths={cards:'<rect x="5" y="3" width="13" height="18" rx="2"/><path d="M2 7v12a3 3 0 0 0 3 3m5-14 3 4-3 4-3-4Z"/>',cauldron:'<path d="M4 8h16l-1 9a4 4 0 0 1-4 3H9a4 4 0 0 1-4-3L4 8Zm1-3h14M8 20l-1 2m9-2 1 2M9 2l1 2m5-3-1 3"/>',orb:'<circle cx="12" cy="10" r="7"/><path d="M7 21h10m-8-4-2 4m8-4 2 4M8 8a4 4 0 0 1 4-2"/>',book:'<path d="M12 5C8 2 4 3 2 4v15c4-2 7-1 10 1 3-2 6-3 10-1V4c-2-1-6-2-10 1Zm0 0v15M5 8h4m-4 4h4m6-4h4m-4 4h4"/>',spark:'<path d="m12 2 2.7 7.3L22 12l-7.3 2.7L12 22l-2.7-7.3L2 12l7.3-2.7L12 2Z"/>',plus:'<path d="M12 5v14M5 12h14"/>',settings:'<circle cx="12" cy="12" r="3"/><path d="m9 3-1 3-3 1-2 3 2 2-1 4 3 1 2 4h4l1-3 4-1 2-3-2-3 1-3-3-1-2-4Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',shuffle:'<path d="m3 5 4 0 10 14h4M3 19h4L17 5h4m-3-3 3 3-3 3m0 8 3 3-3 3"/>',close:'<path d="m6 6 12 12M6 18 18 6"/>',search:'<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>',moon:'<path d="M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11Z"/>',volume:'<path d="M3 9h4l5-4v14l-5-4H3V9Zm13-2a7 7 0 0 1 0 10m3-13a11 11 0 0 1 0 16"/>',mute:'<path d="M3 9h4l5-4v14l-5-4H3V9Zm13 0 5 6m0-6-5 6"/>',check:'<path d="m5 12 4 4L19 6"/>',download:'<path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/>'};
+  return `<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.spark}</svg>`;
+}
+const button=(label,action,cls='secondary',attrs='')=>`<button type="button" class="${cls}" data-action="${action}" ${attrs}>${label}</button>`;
+function toast(message){const el=document.querySelector('#toast');el.textContent=message;el.classList.add('show');const dialog=document.querySelector('#dialog');if(dialog?.open){let notice=dialog.querySelector('.dialog-notice');if(!notice){notice=document.createElement('p');notice.className='dialog-notice';notice.setAttribute('role','status');dialog.querySelector('header').after(notice);}notice.textContent=message;notice.scrollIntoView({block:'nearest',behavior:'instant'});}clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),3500);}
+function modal(title,body,onSubmit){
+  const dialog=document.querySelector('#dialog');dialog.innerHTML=`<form method="dialog" class="dialog-inner"><header><h2>${esc(title)}</h2><button type="button" class="icon-button" data-close aria-label="關閉">${icon('close')}</button></header>${body}</form>`;
+  dialog.querySelector('[data-close]').onclick=()=>dialog.close();
+  dialog.querySelector('form').onsubmit=e=>{e.preventDefault();try{if(onSubmit)onSubmit(new FormData(e.currentTarget),dialog);else dialog.close();}catch(err){toast(err.message);}};
+  dialog.onclick=e=>{if(e.target===dialog)dialog.close();};
+  if(!dialog.open)dialog.showModal();
+  dialog.querySelector('[autofocus]')?.focus();return dialog;
+}
+const field=(label,name,value='',extra='')=>`<label class="field">${esc(label)}<input name="${name}" value="${esc(value)}" ${extra}/></label>`;
+const textarea=(label,name,value='',extra='')=>`<label class="field">${esc(label)}<textarea name="${name}" rows="4" ${extra}>${esc(value)}</textarea></label>`;
+async function copyText(text){
+  try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(text);return true;}}catch{/* Continue to the local-file fallback. */}
+  const input=document.createElement('textarea'),previous=document.activeElement;input.value=text;input.readOnly=true;input.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px';document.body.append(input);input.focus();input.select();input.setSelectionRange(0,text.length);
+  let copied=false;try{copied=document.execCommand('copy');}catch{/* Manual copy remains available. */}input.remove();previous?.focus?.({preventScroll:true});return copied;
+}
+function playTone(muted){if(muted)return;try{const AC=window.AudioContext||window.webkitAudioContext;const ctx=playTone.ctx||(playTone.ctx=new AC());ctx.resume();const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(440,ctx.currentTime);o.frequency.exponentialRampToValueAtTime(880,ctx.currentTime+.18);g.gain.setValueAtTime(.035,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.4);o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+.4);}catch{/* Audio is optional; interactions remain available. */}}
+
+Object.assign(exports,{esc,date,icon,button,toast,modal,field,textarea,copyText,playTone});
+},
+"words.js":(exports,require)=>{
+// Hand-curated Traditional Chinese stimuli, deduplicated across domains.
+const WORD_GROUPS={
+  '最初的晶球':'潮濕 骨頭 節慶 孵化 鏡子 稅 根系 回聲 潮汐 縫隙 鐘擺 鹽 信封 候鳥 苔蘚 蜂巢 借來的時間 影子 褶皺 門檻 發酵 磁鐵 落葉 地圖 溫室 線團 遺忘 指紋 雨傘 倒影 寄生 餘燼 交換 沉默 蝸牛 斷層',
+  '山與大地':'山脊 峽谷 盆地 高原 沙丘 泥沼 火山 冰川 峭壁 洞穴 石林 梯田 荒原 苔原 草甸 森林 邊坡 礦脈 岩漿 地殼 化石 砂礫 黏土 腐土 裂谷 石筍 鐘乳石 隕石 風化 侵蝕 沉積 地層 斷崖 岬角 島嶼 群島 沙洲 暗礁 海溝 海床',
+  '水與流動':'泉眼 瀑布 溪流 河床 支流 河口 三角洲 湖泊 深潭 漩渦 急流 伏流 水庫 堤壩 水閘 灌溉 暗渠 水位 浮標 漣漪 水花 水霧 露珠 霜花 泡沫 水滴 冰柱 冰山 浮冰 融雪 洪水 乾旱 海流 洋流 湧泉 溫泉 鹽湖 地下水 集水區 分水嶺',
+  '天氣與光':'晨霧 暮色 曙光 極光 彩虹 日暈 月暈 閃電 雷鳴 陣雨 細雨 暴雨 冰雹 霰 風雪 颱風 季風 信風 微風 逆風 亂流 氣壓 雲海 卷雲 積雲 層雲 雲隙 曝曬 陰影 逆光 折射 反光 光斑 光暈 燐光 紫外線 熱浪 寒流 晴空 日蝕',
+  '植物與生長':'種子 芽點 花蕾 花粉 果莢 枝椏 樹冠 樹皮 年輪 樹脂 落果 枯枝 氣根 地衣 蕨類 菌絲 孢子 蘑菇 海藻 浮萍 蘆葦 蒲公英 含羞草 捕蠅草 仙人掌 竹節 松針 橡實 銀杏 荷葉 蓮蓬 藤蔓 荊棘 刺果 根瘤 接枝 嫁接 休眠 向光性 共生',
+  '動物與棲地':'觸角 鱗片 羽毛 獠牙 犄角 鰓 鰭 翅膜 蛻殼 斑紋 毒刺 尾巴 觸手 甲殼 蟻巢 蛛網 鳥巢 蟬鳴 蛙卵 蟲蛹 幼蟲 魚卵 魚群 鯨歌 獸徑 足跡 領地 遷徙 冬眠 擬態 變色 沙丁魚 水母 海葵 海膽 章魚 螢火蟲 螳螂 變色龍 穿山甲 信天翁',
+  '身體與生命':'脈搏 心跳 呼吸 睫毛 虹膜 瞳孔 耳蝸 聲帶 指節 掌紋 皮膚 傷疤 瘀青 淚水 汗液 骨髓 關節 肌腱 神經 反射 平衡 痛覺 飢餓 口渴 打嗝 哈欠 夢囈 夢遊 昏睡 眩暈 過敏 抗體 細胞 血管 毛細孔 突觸 本能 寄主 感染 癒合',
+  '感官與材質':'粗糙 光滑 黏稠 酥脆 柔軟 堅硬 空心 透明 半透明 不透明 溫熱 冰涼 麻木 刺痛 酸澀 苦味 甘甜 辛辣 鹹味 腐味 花香 煙味 金屬味 木質 土腥味 沙沙聲 嗡鳴 嘶聲 顫音 悶響 空響 耳語 餘音 炫目 斑駁 朦朧 閃爍 啞光 鏽蝕 磨損',
+  '食物與保存':'麵團 酵母 麴菌 泡菜 醃漬 風乾 煙燻 蜜餞 果醬 豆腐 豆芽 茶葉 咖啡 可可 香料 肉桂 胡椒 八角 芥末 薄荷 薑黃 蜂蜜 焦糖 糖霜 奶油 起司 乳清 蛋殼 蛋黃 澱粉 麵筋 菌種 種麴 陳釀 醋 渣 滷汁 高湯 飯糰 糕點',
+  '廚房與容器':'漏斗 篩網 研缽 杵 砧板 菜刀 蒸籠 陶甕 瓦罐 玻璃瓶 保溫瓶 水壺 茶壺 杯墊 量杯 湯匙 筷子 叉子 盤子 碗 便當盒 籃子 紙袋 油紙 木桶 瓶塞 瓶蓋 錫罐 真空袋 密封罐 冷藏 冷凍 沸騰 蒸發 凝結 萃取 過濾 攪拌 烘焙 焦化',
+  '衣物與纖維':'鈕扣 拉鍊 扣環 口袋 衣領 袖口 帽沿 面紗 披風 圍巾 手套 靴子 鞋帶 鞋楦 領結 別針 繡線 針腳 補丁 布匹 棉絮 絲綢 麻布 羊毛 毛氈 蕾絲 絨布 牛仔布 蠶繭 梭子 紡錘 織機 經線 緯線 結繩 刺繡 蠟染 褪色 摺痕 流蘇',
+  '建築與空間':'走廊 樓梯 天井 中庭 閣樓 地窖 壁爐 煙囪 屋簷 窗框 窗臺 百葉窗 旋轉門 暗門 活板門 拱門 圓頂 柱廊 露臺 陽臺 迴廊 廢墟 斷垣 迷宮 隔間 屏風 牆角 夾層 通風井 電梯間 屋頂 地基 橫梁 鷹架 榫卯 階梯 密室 出口 入口 死角',
+  '城市與場所':'碼頭 港口 燈塔 車站 月臺 機場 轉運站 地鐵 人行道 斑馬線 圓環 岔路 小巷 地下道 天橋 市場 夜市 廟埕 廣場 公園 墓園 圖書館 博物館 劇院 浴場 洗衣店 修鞋店 當舖 郵局 糧倉 倉庫 消防栓 路牌 街燈 排水溝 閘門 隧道 圍牆 廣播站 舊城',
+  '工具與工藝':'槌子 鑿子 銼刀 鋸齒 鉋刀 鉗子 扳手 螺絲 螺帽 墊圈 鉚釘 彈簧 卡榫 軸承 齒輪 鏈條 滑輪 絞盤 絞索 吸盤 水平儀 游標卡尺 圓規 分度器 砂紙 砥石 焊錫 鍛造 鑄模 陶輪 窯爐 釉藥 漆器 鑲嵌 鏤空 鏨刻 裝訂 拓印 版畫 活字',
+  '交通與旅途':'指南針 船錨 船帆 船槳 舵輪 龍骨 壓艙石 救生圈 舢舨 渡輪 潛艇 熱氣球 滑翔翼 風箏 纜車 雪橇 輪軸 車轍 軌道 轉轍器 車廂 臥鋪 票根 行李 護照 簽證 海關 哨站 驛站 旅店 路標 里程碑 逆行 繞路 迂迴 啟程 返航 失速 擱淺 迫降',
+  '聲音與音樂':'節拍 切分音 和弦 休止符 延音 顫音 共鳴 音叉 鼓膜 鼓槌 鈴鐺 風鈴 口琴 手風琴 管風琴 古琴 笛子 簫 二胡 琵琶 三弦 木魚 鑼 鐃鈸 留聲機 唱針 黑膠唱片 八音盒 節拍器 樂譜 暗號 聖歌 童謠 安魂曲 進行曲 搖籃曲 即興 合奏 獨奏 失真',
+  '表演與玩耍':'舞臺 帷幕 聚光燈 面具 假髮 服裝 道具 布景 提線木偶 皮影戲 手影 默劇 腹語 魔術 雜耍 走鋼索 蹺蹺板 鞦韆 旋轉木馬 萬花筒 陀螺 彈珠 積木 拼圖 風車 紙飛機 紙船 摺紙 捉迷藏 跳房子 跳繩 猜謎 撲克牌 骰子 棋盤 棋子 沙漏 接龍 積分 淘汰',
+  '儀式與民俗':'祭壇 供品 香爐 線香 籤筒 擲筊 符紙 神龕 護符 結界 圖騰 祈願 誓言 禁忌 祝福 詛咒 淨化 巡遊 遊行 燈籠 煙火 爆竹 鞭炮 舞獅 面具舞 成年禮 告別式 婚禮 洗禮 加冕 點燈 守夜 送行 迎接 齋戒 朝聖 占卜 預兆 傳說 民謠',
+  '書寫與記憶':'墨水 硯臺 毛筆 羽毛筆 鋼筆 鉛筆 橡皮擦 羊皮紙 稿紙 頁碼 書籤 扉頁 封面 註腳 旁註 索引 目錄 字典 密碼本 日記 年鑑 族譜 檔案 契約 收據 通行證 郵票 印章 蠟封 抄本 殘卷 碎紙 刪節 空白 省略號 錯字 口述 背誦 遺書 碑文',
+  '科學與觀察':'透鏡 稜鏡 凸面鏡 凹面鏡 顯微鏡 望遠鏡 潛望鏡 溫度計 氣壓計 測謊器 分光鏡 光譜 波長 頻率 振幅 干涉 繞射 偏振 電荷 電流 電阻 電容 磁場 引力 浮力 摩擦力 慣性 離心力 壓力 密度 黏度 熵 對稱性 臨界點 相變 結晶 溶解 乳化 催化 半衰期',
+  '機械與系統':'引擎 活塞 汽缸 閥門 渦輪 飛輪 曲軸 排氣管 散熱片 散熱孔 蒸汽機 發電機 變壓器 電池 保險絲 開關 繼電器 保險栓 制動器 離合器 傳動帶 輸送帶 連桿 配重 減速器 機械臂 儀表板 旋鈕 刻度 指針 控制桿 迴路 回授 斷路 短路 超載 耦合 阻尼 共振 鎖定',
+  '數位與訊號':'像素 游標 視窗 圖層 緩衝區 快取 封包 節點 網格 雜訊 訊號 頻寬 延遲 斷線 加密 金鑰 權限 防火牆 沙盒 虛擬機 模擬器 演算法 遞迴 迴圈 分支 佇列 堆疊 雜湊 索引碼 校驗碼 時間戳 版本 快照 備份 壓縮 解碼 編碼 取樣 位元 溢位',
+  '時間與循環':'黎明 正午 黃昏 午夜 子夜 閏日 四季 節氣 花期 汛期 潮間帶 倒數 截止日 期限 等待 遲到 提前 延後 停頓 暫停 重播 循環 輪迴 預演 重逢 再見 回溯 先兆 後遺症 紀念日 懷舊 時差 年代 古老 嶄新 瞬間 永恆 尾聲 序幕 插曲',
+  '人與關係':'陌生人 鄰居 旅人 訪客 嚮導 信差 守門人 收藏家 修補匠 記錄者 見證人 替身 雙胞胎 養子 繼承人 委託人 失蹤者 旁觀者 流亡者 交換生 合夥人 共犯 對手 盟友 債主 債務人 陪伴 依賴 疏離 信任 猜疑 嫉妒 愧疚 寬恕 和解 背叛 承諾 秘密 誤會 默契',
+  '制度與社會':'戶籍 邊境 關卡 通貨 匯率 利息 租金 押金 保證金 贖金 罰款 配額 配給 糧票 兌換券 通行權 所有權 使用權 繼承權 投票 議會 審判 證詞 申訴 遊說 協議 休戰 封鎖 隔離 宵禁 徵收 公共財 壟斷 稀缺 過剩 拍賣 投標 抽籤 排隊 優先權',
+  '狀態與情緒':'寂靜 喧鬧 擁擠 荒涼 溫馨 陌生 熟悉 鬆弛 緊繃 漂浮 下沉 傾斜 懸吊 堆疊 分散 封閉 開放 破碎 完整 匱乏 飽和 脆弱 堅韌 疲倦 清醒 狂喜 憂傷 焦慮 安心 羞怯 驚奇 懷疑 渴望 憧憬 畏懼 迷惘 釋然 失落 眷戀 空虛',
+  '動作與變化':'剝離 撕裂 摺疊 展開 旋轉 翻面 顛倒 交錯 纏繞 打結 解開 磨碎 雕刻 挖掘 填補 疏通 堵塞 滲透 擴散 收縮 膨脹 吸收 釋放 捕捉 逃逸 遮蔽 暴露 模仿 偽裝 複製 替換 分割 拼接 排列 翻譯 映射 壓印 刪除 封存 喚醒',
+  '概念與悖論':'邊界 中心 外圍 間隔 比例 尺度 層次 視角 框架 輪廓 焦點 盲點 機率 偶然 必然 例外 規律 秩序 混沌 對偶 反轉 反例 假象 真相 矛盾 悖論 因果 代價 選擇 損失 贈與 債 牽引 連鎖 閾值 尖峰 穩態 平衡點 不可逆 不確定性',
+  '天空與宇宙':'星座 星圖 星軌 行星 衛星 彗星 流星 星雲 星團 銀河 黑洞 白矮星 紅巨星 超新星 雙星 軌道 天體 月相 朔月 滿月 弦月 潮汐鎖定 太陽風 宇宙塵 真空 失重 重力井 事件視界 光年 天頂 地平線 北極星 天狼星 金星 土星 環帶 隕石坑 探測器 太空艙 氣閘',
+  '海洋與深處':'珊瑚 珊瑚礁 海草 海帶 海綿 潮池 貝殼 海螺 珍珠 海玻璃 漂流木 漂流瓶 沉船 寶箱 潛水鐘 水肺 纜繩 浮筒 航道 海圖 聲納 深度計 海面 鹽度 潮線 滿潮 退潮 黑潮 赤潮 深海 熱泉 海雪 發光器 磷光 魷魚 墨汁 鯨落 魚鰾 潮洞 海蝕柱'
+};
+const WORD_BANK=[...new Set(Object.values(WORD_GROUPS).flatMap(group=>group.split(' ')))];
+
+Object.assign(exports,{WORD_GROUPS,WORD_BANK});
+}};const cache={};function require(name){if(!cache[name]){const exports={};cache[name]=exports;factories[name](exports,require);}return cache[name];}require('app.js');})();</script></body></html>
